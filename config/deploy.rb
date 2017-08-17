@@ -17,7 +17,6 @@ set :rbenv_ruby, '2.3.1'
 set :rbenv_type, :user
 
 # rails
-set :assets_prefix, 'estaticos'
 set :linked_dirs, %w{
   log
   tmp/pids
