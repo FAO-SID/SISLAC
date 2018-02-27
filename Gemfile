@@ -49,27 +49,25 @@ gem 'browser_detect'
 gem 'rails-api'
 
 ## Assets
-group :assets do
-  gem 'tinymce-rails'
-  gem 'sass-rails'
-  gem 'coffee-rails'
-  gem 'uglifier'
-  # FIXME Deprecate
-  gem 'multiselectjs_rails',
-    git: 'https://github.com/mauriciopasquier/multiselectjs_rails.git'
-  gem 'jquery-rails'
-  gem 'jquery-ui-rails'
-  gem 'select2-rails'
-  gem 'bootstrap', '~> 4.0'
+gem 'tinymce-rails'
+gem 'sass-rails'
+gem 'coffee-rails'
+gem 'uglifier'
+# FIXME Deprecate
+gem 'multiselectjs_rails',
+  git: 'https://github.com/mauriciopasquier/multiselectjs_rails.git'
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
+gem 'select2-rails'
+gem 'bootstrap', '~> 4.0'
 
-  # Bower packages
-  # FIXME Migrate to webpacker
-  source 'https://rails-assets.org' do
-    # FIXME Congelados hasta incluir Leaflet.GoogleMutant acá
-    gem 'rails-assets-leaflet', '1.2.0'
-    gem 'rails-assets-leaflet-plugins', '3.0.1'
-    gem 'rails-assets-fontawesome'
-  end
+# Bower packages
+# FIXME Migrate to webpacker
+source 'https://rails-assets.org' do
+  # FIXME Congelados hasta incluir Leaflet.GoogleMutant acá
+  gem 'rails-assets-leaflet', '1.2.0'
+  gem 'rails-assets-leaflet-plugins', '3.0.1'
+  gem 'rails-assets-fontawesome'
 end
 
 # Administración
