@@ -6,16 +6,15 @@ gem 'thor', '0.19.1'
 
 ## DB
 gem 'pg'
-gem 'yaml_db'
 
-## Aut{enticación,orización}, seguridad en general
+## Authentication, authorization, security
 gem 'devise'
 gem 'cancancan'
 gem 'rolify', '~> 3.4'
 gem 'rack-cors'
 gem 'jwt'
 
-## Presentación
+## UI
 gem 'dynamic_form'
 gem 'haml-rails'
 gem 'awesome_nested_fields'
@@ -24,7 +23,7 @@ gem 'draper'
 gem 'ransack'
 gem 'rails-jquery-autocomplete'
 
-## Modelos
+## Models
 gem 'paperclip', '~> 5.2'
 gem 'acts-as-taggable-on'
 gem 'attribute_normalizer'
@@ -37,35 +36,40 @@ gem 'squeel',
 gem 'activerecord-postgis-adapter'
 gem 'rgeo'
 gem 'rgeo-geojson', require: 'rgeo/geo_json'
-# Para los datos del IGN
+# FIXME IGN
+# FIXME Extract to gem
 gem 'rubyzip'
 
-## Controladores
+## Controllers
 gem 'responders'
 gem 'has_scope'
-# No funciona la inclusión automática, asique la copié a vendor
+# FIXME No funciona la inclusión automática, asique la copié a vendor
+# FIXME Deprecate
 gem 'browser_detect'
 gem 'rails-api'
 
 ## Assets
-gem 'tinymce-rails'
-gem 'sass-rails'
-gem 'coffee-rails'
-gem 'uglifier'
-# FIXME Todavía no hay release compatible con rails4
-gem 'multiselectjs_rails',
-  git: 'https://github.com/mauriciopasquier/multiselectjs_rails.git'
-gem 'jquery-rails'
-gem 'jquery-ui-rails'
-gem 'select2-rails'
-gem 'bootstrap', '~> 4.0'
+group :assets do
+  gem 'tinymce-rails'
+  gem 'sass-rails'
+  gem 'coffee-rails'
+  gem 'uglifier'
+  # FIXME Deprecate
+  gem 'multiselectjs_rails',
+    git: 'https://github.com/mauriciopasquier/multiselectjs_rails.git'
+  gem 'jquery-rails'
+  gem 'jquery-ui-rails'
+  gem 'select2-rails'
+  gem 'bootstrap', '~> 4.0'
 
-# Paquetes de bower
-source 'https://rails-assets.org' do
-  # Congelados hasta incluir Leaflet.GoogleMutant acá
-  gem 'rails-assets-leaflet', '1.2.0'
-  gem 'rails-assets-leaflet-plugins', '3.0.1'
-  gem 'rails-assets-fontawesome'
+  # Bower packages
+  # FIXME Migrate to webpacker
+  source 'https://rails-assets.org' do
+    # FIXME Congelados hasta incluir Leaflet.GoogleMutant acá
+    gem 'rails-assets-leaflet', '1.2.0'
+    gem 'rails-assets-leaflet-plugins', '3.0.1'
+    gem 'rails-assets-fontawesome'
+  end
 end
 
 # Administración
@@ -76,16 +80,16 @@ gem 'tolk'
 gem 'rails-i18n'
 gem 'devise-i18n'
 gem 'kaminari-i18n'
-# No está publicada la versión compatible con ActiveAdmin 1.0.0
+# FIXME No está publicada la versión compatible con ActiveAdmin 1.0.0
 gem 'activeadmin-globalize',
   git: 'https://github.com/mauriciopasquier/activeadmin-globalize.git',
   branch: 'sisar'
 
 ## Server
-# TODO revisar configuración de compresión
+# TODO Review compression config
 gem 'dalli'
 
-## Desarrollo pero útiles en producción
+## Development but we might need them in production
 gem 'minitest-rails'
 gem 'awesome_print'
 gem 'pry-rails'
