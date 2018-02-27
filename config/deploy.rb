@@ -1,19 +1,17 @@
-# config valid only for current version of Capistrano
-lock '3.6.1'
+# Config valid only for this version of Capistrano
+lock '3.10.1'
 
-set :application, 'SiSINTA'
-set :repo_url, 'https://github.com/INTA-Suelos/SiSinta.git'
+set :application, 'sislac'
+set :repo_url, 'git@github.com:FAO-GSP/SISLAC.git'
 
-# Defaults de capistrano
+# Capistrano defaults
 set :branch, :master
-set :scm, :git
 set :format, :pretty
 set :log_level, :debug
 set :pty, false
 set :keep_releases, 5
 
 # rbenv
-set :rbenv_ruby, '2.3.1'
 set :rbenv_type, :user
 
 # rails
@@ -25,6 +23,9 @@ set :linked_dirs, %w{
   vendor/bundle
   public/system
 }
+
+# Configuration files adapted to the deploy server. You need to provision these
+# somehow
 set :linked_files, %w{
   config/secrets.yml
   config/database.yml

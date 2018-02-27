@@ -1,12 +1,10 @@
-set :deploy_user, 'sisar'
-set :deploy_to, '/srv/http/sisar.inta.gob.ar'
+set :deploy_user, ENV['DEPLOY_USER']
+set :deploy_to, ENV['DEPLOY_PATH']
 
-# Cómo subir la configuración de la app al server
-set :config_strategy, 'config:dir'
+# How to provision server configuration files with capistrano-config_provider
+set :config_repo_url, ENV['CONFIG_REPO_URL']
 
-# Cómo reiniciar el webserver
+# How to restart the webserver
 set :passenger_restart_with_sudo, false
 
-set :branch, 'master'
-
-server 'sisar.inta.gob.ar', user: fetch(:deploy_user), roles: %w{app web db}
+server ENV['DEPLOY_SERVER'], user: fetch(:deploy_user), roles: %w{app web db}
