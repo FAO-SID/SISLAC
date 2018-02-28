@@ -40,7 +40,7 @@ Rails.application.configure do
 
   # Cómo guardar los archivos adjuntos. Usa la interpolación de Paperclip y el
   # símbolo :url que está definido en el modelo Adjunto
-  config.adjunto_path = '/var/tmp/sisinta-dev:url'
+  config.adjunto_path = '/var/tmp/attachments-dev:url'
 
   # Bullet
   config.after_initialize do

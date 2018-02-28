@@ -71,7 +71,7 @@ Rails.application.configure do
 
   # Cómo guardar los archivos adjuntos. Usa la interpolación de Paperclip y el
   # símbolo :url que está definido en el modelo Adjunto
-  config.adjunto_path = '/var/tmp/sisinta-prod:url'
+  config.adjunto_path = '/var/tmp/attachments-prod:url'
 
   # TODO Documentar
   Rails.application.routes.default_url_options[:host] = 'cambiame'

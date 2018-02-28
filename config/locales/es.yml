@@ -126,7 +126,7 @@ es:
       mostrar_adjuntos: Mostrar adjuntos
       mostrar_perfil: Mostrar perfil
       sin_horizontes: Este perfil no tiene horizontes cargados
-  app: SiSINTA
+  app: SISLAC
   ayuda:
     busqueda:
       publico: La búsqueda es pública para todos los usuarios y los visitantes sin
@@ -237,8 +237,8 @@ es:
         edit: Actualizar %{model}
   inicio:
     index:
-      bienvenida: Sistema de Información de Suelos del INTA
-      datos_actuales: "%{perfiles} perfiles (%{publicos} públicos) en %{series} series."
+      title: Sistema de Información de Suelos de Latinoamérica
+      text: "%{perfiles} perfiles (%{publicos} públicos) en %{series} series."
   layouts:
     admin_link:
       administracion: Administración

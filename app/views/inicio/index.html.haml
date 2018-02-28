@@ -5,8 +5,8 @@
 
   #mapa{ data: {  geojson: perfiles_path(publicos: true, format: :geojson),
                   seleccion_url: seleccion_path,
-                  info_title: t('.bienvenida'),
-                  info_text: t('.datos_actuales', perfiles: @perfiles, publicos: @publicos, series: @series),
+                  info_title: t('.title'),
+                  info_text: t('.text', perfiles: @perfiles, publicos: @publicos, series: @series),
                   center: @map[:center],
                   zoom: @map[:zoom] } }
 
