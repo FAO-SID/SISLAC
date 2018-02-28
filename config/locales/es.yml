@@ -237,7 +237,7 @@ es:
         edit: Actualizar %{model}
   inicio:
     index:
-      title: Sistema de Información de Suelos de Latinoamérica
+      title: Sistema de Información de Suelos de Latinoamérica y el Caribe
       text: "%{perfiles} perfiles (%{publicos} públicos) en %{series} series."
   layouts:
     admin_link:

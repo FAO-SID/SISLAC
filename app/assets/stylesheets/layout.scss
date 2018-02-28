@@ -55,13 +55,13 @@ body {
 
   nav.navbar {
     height: $navbar-height;
+    background-color: $navbar-color;
   }
 }
 
 .navbar-brand {
   img {
-    width: 40px;
-    height: 40px;
+    height: $navbar-height - 1rem;
   }
 }
 
