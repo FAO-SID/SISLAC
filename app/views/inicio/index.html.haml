@@ -6,7 +6,9 @@
   #mapa{ data: {  geojson: perfiles_path(publicos: true, format: :geojson),
                   seleccion_url: seleccion_path,
                   info_title: t('.bienvenida'),
-                  info_text: t('.datos_actuales', perfiles: @perfiles, publicos: @publicos, series: @series) } }
+                  info_text: t('.datos_actuales', perfiles: @perfiles, publicos: @publicos, series: @series),
+                  center: @map[:center],
+                  zoom: @map[:zoom] } }
 
 -# TODO Cargar dinámicamente desde un js
 = javascript_include_tag 'http://maps.google.com/maps/api/js?v=3.29&libraries=geometry'

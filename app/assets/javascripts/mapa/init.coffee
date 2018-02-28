@@ -1,12 +1,12 @@
 jQuery ->
   # Si hay un mapa en la página
   if $('#mapa').length
-    # Por default mostramos Argentina entera
-    zoom = $('#mapa').data('zoom') || 4
-    centro = $('#mapa').data('centro') || [-40, -65]
+    # Show the world by default but use configured values if present
+    zoom = $('#mapa').data('zoom') || 2
+    center = $('#mapa').data('center') || [0, 0]
 
     mapa = L.map('mapa', {
-      center: centro
+      center: center
       zoom: zoom
       zoomControl: false
     })
