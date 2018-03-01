@@ -5,11 +5,9 @@
 // 🍂class GridLayer.GoogleMutant
 // 🍂extends GridLayer
 L.GridLayer.GoogleMutant = L.GridLayer.extend({
-	includes: L.Mixin.Events,
-
 	options: {
 		minZoom: 0,
-		maxZoom: 18,
+		maxZoom: 23,
 		tileSize: 256,
 		subdomains: 'abc',
 		errorTileUrl: '',
@@ -93,13 +91,17 @@ L.GridLayer.GoogleMutant = L.GridLayer.extend({
 		map._container.removeChild(this._mutantContainer);
 		this._mutantContainer = undefined;
 
+		google.maps.event.clearListeners(map, 'idle');
+		google.maps.event.clearListeners(this._mutant, 'idle');
 		map.off('viewreset', this._reset, this);
 		map.off('move', this._update, this);
 		map.off('zoomend', this._handleZoomAnim, this);
 		map.off('resize', this._resize, this);
 
-		map._controlCorners.bottomright.style.marginBottom = '0em';
-		map._controlCorners.bottomleft.style.marginBottom = '0em';
+		if (map._controlCorners) {
+			map._controlCorners.bottomright.style.marginBottom = '0em';
+			map._controlCorners.bottomleft.style.marginBottom = '0em';
+		}
 	},
 
 	getAttribution: function () {

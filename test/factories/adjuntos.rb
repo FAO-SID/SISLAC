@@ -5,7 +5,7 @@ FactoryGirl.define do
     perfil
     archivo do
       Rack::Test::UploadedFile.new(
-        Rails.root.join('app', 'assets', 'images', 'favicon.png'), 'image/png'
+        Rails.root.join('app', 'assets', 'favicons', 'favicon.ico'), 'image/x-icon'
       )
     end
     notas { generate :cadena_unica }

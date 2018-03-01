@@ -3,12 +3,15 @@
 -# Container con altura definida para el mapa
 #container-mapa.d-flex.flex-column
 
-  #mapa{ data: {  geojson: perfiles_path(publicos: true, format: :geojson),
+  #mapa{ data: {  geojson: '/sislac/system/perfiles.geojson',
                   seleccion_url: seleccion_path,
                   info_title: t('.title'),
                   info_text: t('.text', perfiles: @perfiles, publicos: @publicos, series: @series),
                   center: @map[:center],
-                  zoom: @map[:zoom] } }
+                  zoom: @map[:zoom],
+                  icon_url: asset_path('leaflet/dist/images/marker-icon.png'),
+                  icon_retina_url: asset_path('leaflet/dist/images/marker-icon-2x.png'),
+                  shadow_url: asset_path('leaflet/dist/images/marker-shadow.png') } }
 
 -# TODO Cargar dinámicamente desde un js
 = javascript_include_tag 'http://maps.google.com/maps/api/js?v=3.29&libraries=geometry'

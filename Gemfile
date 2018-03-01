@@ -64,9 +64,8 @@ gem 'bootstrap', '~> 4.0'
 # Bower packages
 # FIXME Migrate to webpacker
 source 'https://rails-assets.org' do
-  # FIXME Congelados hasta incluir Leaflet.GoogleMutant acá
-  gem 'rails-assets-leaflet', '1.2.0'
-  gem 'rails-assets-leaflet-plugins', '3.0.1'
+  # FIXME Include Leaflet.GoogleMutant
+  gem 'rails-assets-leaflet'
   gem 'rails-assets-leaflet.markercluster'
   gem 'rails-assets-fontawesome'
 end

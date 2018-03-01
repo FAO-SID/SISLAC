@@ -1,14 +1,3 @@
-# Configura el path base para evitar que leaflet intente calcular la url de
-# las imágenes, porque no entiende los helpers de sass.
-L.Icon.Default.imagePath = '/assets/'
-# Configura las imágenes de los íconos con digests, sacando el path base de
-# las url de las imágenes, para que no quede duplicado.
-L.Icon.Default.mergeOptions({
-  iconUrl: "<%= image_path('leaflet/dist/images/marker-icon.png').sub('/assets/', '') %>"
-  iconRetinaUrl: "<%= image_path('leaflet/dist/images/marker-icon-2x.png').sub('/assets/', '') %>"
-  shadowUrl: "<%= image_path('leaflet/dist/images/marker-shadow.png').sub('/assets/', '') %>"
-})
-
 # Cuadro de información con título y texto
 L.Control.Info = L.Control.extend({
   options:
@@ -36,16 +25,21 @@ L.control.info = (opts) ->
 # https://robots.thoughtbot.com/module-pattern-in-javascript-and-coffeescript
 window.Mapa = {}
 
-# Genera el markup para cada punto del geoJson
-Mapa.preparar_punto = (punto, capa) ->
-  serie = if punto.properties.serie
-    "<a target='_blank' title='Serie' href='#{punto.properties.serie.url}'>#{
-      punto.properties.serie.nombre || 'Serie'}</a> - "
+# Genera el markup del popup para cada punto del geoJson
+Mapa.preparar_markup = (perfil) ->
+  serie = perfil.serie
+
+  serie_html = if serie
+    "<a target='_blank' title='Serie' href='#{serie.url}'>#{serie.nombre || 'Serie'}</a> - "
   else
     ''
+  [
+    serie_html,
+    "<a target='_blank' title='Perfil' href='#{perfil.url}'>",
+    "#{perfil.numero || 'Perfil'}",
+    '</a>'
+  ].join('')
 
-  capa.bindPopup(
-    serie + "<a target='_blank' title='Perfil' href='#{punto.properties.url}'>#{
-      punto.properties.numero || 'Perfil'}</a>"
-  )
-
+# Genera el popup markup para cada punto del geoJson
+Mapa.preparar_popup = (punto, capa) ->
+  capa.bindPopup Mapa.preparar_markup(punto.properties)

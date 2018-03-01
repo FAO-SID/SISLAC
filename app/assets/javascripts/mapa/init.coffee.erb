@@ -1,9 +1,23 @@
 jQuery ->
-  # Si hay un mapa en la página
-  if $('#mapa').length
+  map_container = $('#mapa')
+
+  # If there is a map in this page
+  if map_container.length
+    # Configure base path to avoit leaflet trying to guess it with a bugged regex
+    # FIXME Patch leaflet or wait until they remove this path guessing
+    assets_prefix = '<%= (Rails.application.config.relative_url_root || Rails.application.config.assets.prefix).to_s %>'
+    L.Icon.Default.imagePath = assets_prefix
+
+    # Remove path prefix because between sprockets and leaflets is duplicated
+    L.Icon.Default.prototype.options = Object.assign L.Icon.Default.prototype.options, {
+      iconUrl: map_container.data('iconUrl').replace(assets_prefix, '')
+      iconRetinaUrl: map_container.data('iconRetinaUrl').replace(assets_prefix, '')
+      shadowUrl: map_container.data('shadowUrl').replace(assets_prefix, '')
+    }
+
     # Show the world by default but use configured values if present
-    zoom = $('#mapa').data('zoom') || 2
-    center = $('#mapa').data('center') || [0, 0]
+    zoom = map_container.data('zoom') || 2
+    center = map_container.data('center') || [0, 0]
 
     mapa = L.map('mapa', {
       center: center
@@ -23,12 +37,10 @@ jQuery ->
     # Capa inicial
     mapa.addLayer(g_hibrido)
 
-    # Capa de geoJson
-    geojson = L.geoJson()
     # Capa de clusters
     clusters = L.markerClusterGroup()
 
-    # Controles de zoom, capas e info
+    # Control de zoom
     L.control.zoom({
       position: 'topright'
     }).addTo(mapa)
@@ -42,9 +54,10 @@ jQuery ->
       'Perfiles públicos': clusters
     }).addTo(mapa)
 
+    # Información sobre los puntos
     L.control.info({
-      title: $('#mapa').data('infoTitle')
-      text: $('#mapa').data('infoText')
+      title: map_container.data('infoTitle')
+      text: map_container.data('infoText')
     }).addTo(mapa)
 
     # Al seleccionar un rectángulo con shift + click, enviamos las coordenadas
@@ -80,10 +93,10 @@ jQuery ->
         $('#avisos').html $('<div />', { id: "flash_#{res.tipo}", text: res.mensaje })
 
     # Pide y agrega los puntos
-    $.getJSON $('#mapa').data('geojson'), (data) ->
+    $.getJSON map_container.data('geojson'), (data) ->
       clusters.addLayer(
-        # Agrega una capa de geoJson
-        geojson.addData(data, {
-          onEachFeature: Mapa.preparar_punto
+        # Capa de geoJson
+        L.geoJson(data, {
+          onEachFeature: Mapa.preparar_popup
         })
       ).addTo(mapa)
