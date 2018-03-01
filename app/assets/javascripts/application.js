@@ -16,6 +16,7 @@
 //
 // Mapas
 //= require leaflet
+//= require leaflet.markercluster
 //= require leaflet-plugins
 // TODO Buscar de alguna gema o paquete
 //= require vendor/Leaflet.GoogleMutant

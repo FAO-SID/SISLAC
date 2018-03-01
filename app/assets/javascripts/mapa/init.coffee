@@ -24,7 +24,9 @@ jQuery ->
     mapa.addLayer(g_hibrido)
 
     # Capa de geoJson
-    geojson = L.geoJson().addTo(mapa)
+    geojson = L.geoJson()
+    # Capa de clusters
+    clusters = L.markerClusterGroup()
 
     # Controles de zoom, capas e info
     L.control.zoom({
@@ -37,7 +39,7 @@ jQuery ->
       'Google': g_hibrido
       'Google Terrain': g_terreno
     }, {
-      'Perfiles públicos': geojson
+      'Perfiles públicos': clusters
     }).addTo(mapa)
 
     L.control.info({
@@ -79,6 +81,9 @@ jQuery ->
 
     # Pide y agrega los puntos
     $.getJSON $('#mapa').data('geojson'), (data) ->
-      geojson.addData(data, {
-        onEachFeature: Mapa.preparar_punto
-      })
+      clusters.addLayer(
+        # Agrega una capa de geoJson
+        geojson.addData(data, {
+          onEachFeature: Mapa.preparar_punto
+        })
+      ).addTo(mapa)
