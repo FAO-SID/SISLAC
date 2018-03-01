@@ -55,14 +55,31 @@ body {
 
   nav.navbar {
     height: $navbar-height;
-    background-color: $navbar-color;
   }
 }
 
 .navbar-brand {
+  font-size: 1.5rem;
+
   img {
     height: $navbar-height - 1rem;
+
+    // A small separation between brands
+    &:first-child {
+      padding-right: 0.5rem;
+      border-right: 1px solid #ffffff;
+    }
   }
+  
+  a {
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+nav.navbar {
+  background-color: $navbar-color;
 }
 
 .botonera {
