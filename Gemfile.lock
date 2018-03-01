@@ -160,6 +160,11 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
+    countries (2.1.4)
+      i18n_data (~> 0.8.0)
+      money (~> 6.9)
+      sixarm_ruby_unaccent (~> 1.1)
+      unicode_utils (~> 1.4)
     crass (1.0.3)
     dalli (2.7.6)
     database_cleaner (1.5.3)
@@ -212,6 +217,7 @@ GEM
       ruby_parser (~> 3.5)
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
+    i18n_data (0.8.0)
     inflections (0.0.5)
       activesupport (>= 2.2.1)
     inherited_resources (1.7.2)
@@ -232,6 +238,7 @@ GEM
     kaminari-i18n (0.4.0)
       kaminari
       rails
+    kiba (2.0.0)
     loofah (2.2.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -259,6 +266,8 @@ GEM
       minitest-capybara (~> 0.8)
       minitest-metadata (~> 0.6)
       minitest-rails (~> 2.1)
+    money (6.10.1)
+      i18n (>= 0.6.4, < 1.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (4.2.0)
@@ -363,6 +372,7 @@ GEM
       rubyzip (~> 1.0)
       websocket (~> 1.0)
     sexp_processor (4.10.1)
+    sixarm_ruby_unaccent (1.2.0)
     slop (3.6.0)
     spring (1.7.1)
     sprockets (3.7.1)
@@ -387,6 +397,7 @@ GEM
       thread_safe (~> 0.1)
     uglifier (3.0.0)
       execjs (>= 0.3.0, < 3)
+    unicode_utils (1.4.0)
     uniform_notifier (1.10.0)
     warden (1.2.7)
       rack (>= 1.0)
@@ -419,6 +430,7 @@ DEPENDENCIES
   capistrano-rails-collection
   capistrano-rbenv
   coffee-rails
+  countries
   dalli
   database_cleaner
   devise
@@ -435,6 +447,7 @@ DEPENDENCIES
   jwt
   kaminari
   kaminari-i18n
+  kiba
   minitest-rails
   minitest-rails-capybara
   multiselectjs_rails!

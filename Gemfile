@@ -70,6 +70,10 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-fontawesome'
 end
 
+# Data
+gem 'kiba'
+gem 'countries'
+
 # Administración
 gem 'activeadmin'
 
