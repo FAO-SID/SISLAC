@@ -3,7 +3,9 @@ class GeojsonPerfilSerializer < ActiveModel::Serializer
   attributes :id, :numero, :fecha, :clase, :serie, :url
 
   def as_json(*args)
-    self.to_feature
+    Rails.cache.fetch ['geojson_perfil_serializer', object] do
+      self.to_feature
+    end
   end
 
   def to_feature

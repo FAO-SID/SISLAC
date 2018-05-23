@@ -22,8 +22,8 @@ class PerfilesController < AutorizadoController
     :index, :seleccionar, :derivar, :almacenar, :exportar, :show, :procesar
   ]
 
-  skip_load_and_authorize_resource only: :index
-  skip_authorization_check only: :index
+  skip_load_and_authorize_resource only: [:index]
+  skip_authorization_check only: [:index]
 
   with_options only: [:index, :seleccionar, :exportar, :procesar] do |o|
     o.before_filter :preparar
@@ -52,7 +52,7 @@ class PerfilesController < AutorizadoController
       format.csv do
         send_data CSVSerializer.new(@perfiles).as_csv(
           headers: true, checks: current_usuario.try(:checks_csv_perfiles)
-        ), filename: archivo_csv
+        ), filename: archivo_csv, disposition: :inline
       end
     end
   end
