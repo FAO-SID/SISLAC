@@ -1,5 +1,7 @@
 # encoding: utf-8
 class PerfilesController < AutorizadoController
+  include GeojsonCache
+
   autocomplete :reconocedores, :name, full: true,
     class_name: 'Tag',
     scopes: [:reconocedores]
@@ -7,14 +9,13 @@ class PerfilesController < AutorizadoController
     class_name: 'Tag',
     scopes: [:etiquetas]
 
-  has_scope :pagina, default: 1, unless: :geojson?
-  has_scope :per, as: :filas, unless: :geojson?
-  has_scope :geolocalizados, type: :boolean, default: true, if: :geojson?
+  has_scope :pagina, default: 1, unless: :geojson_request?
+  has_scope :per, as: :filas, unless: :geojson_request?
+  has_scope :geolocalizados, type: :boolean, default: true, if: :geojson_request?
   has_scope :publicos, type: :boolean, default: false, if: :publicos?
 
   load_and_authorize_resource
 
-  respond_to :geojson, only: [:index, :show]
   respond_to :csv, only: [:index, :show, :procesar]
 
   # acciones que funcionan anónimamente
@@ -89,11 +90,14 @@ class PerfilesController < AutorizadoController
     @perfil.usuario = current_usuario
 
     # Si falla, responders lo redirige a new
-    opciones = if @perfil.save
+    opciones = { }
+
+    if @perfil.save
       current_usuario.grant 'Miembro', @perfil
-      { location: perfil_o_analiticos }
-    else
-      { }
+
+      expire_geojson
+
+      opciones = { location: perfil_o_analiticos }
     end
 
     respond_with (@perfil = @perfil.decorate), opciones
@@ -101,17 +105,23 @@ class PerfilesController < AutorizadoController
 
   def update
     # Si falla, responders lo redirige a edit
-    opciones = if @perfil.update_attributes(perfil_params)
-      { location: perfil_o_analiticos }
-    else
-      { }
+    opciones = { }
+
+    if @perfil.update_attributes(perfil_params)
+      expire_geojson @perfil
+
+      opciones = { location: perfil_o_analiticos }
     end
 
     respond_with (@perfil = @perfil.decorate), opciones
   end
 
   def destroy
-    respond_with @perfil.destroy
+    if @perfil.destroy
+      expire_geojson @perfil
+    end
+
+    respond_with @perfil
   end
 
   # Preparar los atributos a exportar/importar en CSV
@@ -171,6 +181,11 @@ class PerfilesController < AutorizadoController
 
   def update_analiticos
     @perfil.update_attributes(perfil_params)
+
+    unless @perfil.errors.any?
+      expire_geojson @perfil
+    end
+
     respond_with @perfil, location: perfil_analiticos_path(@perfil) do |format|
       if @perfil.errors.any?
         format.html { render action: 'editar_analiticos' }
@@ -308,10 +323,6 @@ class PerfilesController < AutorizadoController
 
     def perfiles_seleccionados=(perfiles)
       session[:perfiles_seleccionados] = perfiles
-    end
-
-    def geojson?
-      params[:format] == 'geojson'
     end
 
     def publicos?

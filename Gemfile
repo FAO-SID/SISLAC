@@ -47,6 +47,8 @@ gem 'has_scope'
 # FIXME Deprecate
 gem 'browser_detect'
 gem 'rails-api'
+# TODO Revisar compatibilidad con rails > 5.0
+gem 'actionpack-page_caching'
 
 ## Assets
 gem 'tinymce-rails'

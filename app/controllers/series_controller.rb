@@ -1,5 +1,7 @@
 # encoding: utf-8
 class SeriesController < AutorizadoController
+  include GeojsonCache
+
   autocomplete :serie, :nombre, full: true, extra_data: [:simbolo, :provincia_id]
   autocomplete :serie, :simbolo, full: true, extra_data: [:nombre, :provincia_id]
 
@@ -44,10 +46,12 @@ class SeriesController < AutorizadoController
 
   def create
     # Si falla, responders lo redirige a new
-    opciones = if @serie.save
-      { location: serie_o_buscar_perfiles }
-    else
-      { }
+    opciones = { }
+
+    if @serie.save
+      expire_geojson @serie.perfiles
+
+      opciones = { location: serie_o_buscar_perfiles }
     end
 
     respond_with @serie, opciones
@@ -55,17 +59,23 @@ class SeriesController < AutorizadoController
 
   def update
     # Si falla, responders lo redirige a edit
-    opciones = if @serie.update_attributes(serie_params)
-      { location: serie_o_buscar_perfiles }
-    else
-      { }
+    opciones = { }
+
+    if @serie.update_attributes(serie_params)
+      expire_geojson @serie.perfiles
+
+      opciones = { location: serie_o_buscar_perfiles }
     end
 
     respond_with (@serie = @serie.decorate), opciones
   end
 
   def destroy
-    respond_with @serie.destroy
+    if @serie.destroy
+      expire_geojson @serie.perfiles
+    end
+
+    respond_with @serie
   end
 
   private
