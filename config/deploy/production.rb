@@ -11,4 +11,8 @@ set :config_repo_url, ENV['CONFIG_REPO_URL']
 # How to restart the webserver
 set :passenger_restart_with_sudo, false
 
+set :default_env, { 
+  'RAILS_RELATIVE_URL_ROOT' => '/sislac'
+}
+
 server ENV['DEPLOY_SERVER'], user: fetch(:deploy_user), roles: %w{app web db}
