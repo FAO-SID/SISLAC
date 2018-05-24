@@ -15,3 +15,5 @@ db/datos
 
 # Archivos de development
 .envrc
+public/es
+public/en
