@@ -4,13 +4,10 @@
 // Las variables de bootstrap se redefinen antes de importarlo. Lista de
 // variables:
 //   https://github.com/twbs/bootstrap-rubygem/blob/d12646e808a250b1130d1ddad3e82546d83c4b55/assets/stylesheets/bootstrap/_variables.scss
-
 @import 'bootstrap';
-@import 'fontawesome_fix';
 
 // Por problemas con google maps:
 //   https://v4-alpha.getbootstrap.com/getting-started/introduction/#box-sizing
-
 @import 'leaflet';
 @import 'leaflet.markercluster';
 

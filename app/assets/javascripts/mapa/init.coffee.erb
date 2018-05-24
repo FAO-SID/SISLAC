@@ -8,7 +8,7 @@ jQuery ->
     assets_prefix = '<%= (Rails.application.config.relative_url_root || Rails.application.config.assets.prefix).to_s %>'
     L.Icon.Default.imagePath = assets_prefix
 
-    # Remove path prefix because between sprockets and leaflets is duplicated
+    # Remove path prefix because between sprockets and leaflet is duplicated
     L.Icon.Default.prototype.options = Object.assign L.Icon.Default.prototype.options, {
       iconUrl: map_container.data('iconUrl').replace(assets_prefix, '')
       iconRetinaUrl: map_container.data('iconRetinaUrl').replace(assets_prefix, '')

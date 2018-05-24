@@ -69,7 +69,6 @@ source 'https://rails-assets.org' do
   # FIXME Include Leaflet.GoogleMutant
   gem 'rails-assets-leaflet'
   gem 'rails-assets-leaflet.markercluster'
-  gem 'rails-assets-fontawesome'
 end
 
 # Data
