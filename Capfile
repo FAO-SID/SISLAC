@@ -4,6 +4,7 @@ require 'capistrano/setup'
 # Include default deployment tasks
 require 'capistrano/deploy'
 
+# Use git for versioning
 require 'capistrano/scm/git'
 install_plugin Capistrano::SCM::Git
 
@@ -19,6 +20,9 @@ require 'capistrano/passenger'
 
 # Provee la configuración privada del server en cada deploy
 require 'capistrano/config_provider'
+
+# Manage remote job workers
+require 'capistrano/delayed_job'
 
 # Load custom tasks from `lib/capistrano/tasks' if you have any defined
 Dir.glob('lib/capistrano/tasks/*.rake').each { |r| import r }

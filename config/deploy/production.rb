@@ -11,6 +11,9 @@ set :config_repo_url, ENV['CONFIG_REPO_URL']
 # How to restart the webserver
 set :passenger_restart_with_sudo, false
 
+# How many job workers to use
+set :delayed_job_workers, 2
+
 set :default_env, { 
   'RAILS_RELATIVE_URL_ROOT' => '/sislac'
 }
