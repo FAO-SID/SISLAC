@@ -41,5 +41,7 @@ module SiSINTA
     config.generators do |g|
       g.test_framework :minitest, spec: true, fixture: false
     end
+
+    config.active_job.queue_adapter = :delayed_job
   end
 end

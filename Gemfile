@@ -91,6 +91,8 @@ gem 'activeadmin-globalize',
 ## Server
 # TODO Review compression config
 gem 'dalli'
+gem 'delayed_job_active_record'
+
 
 ## Development but we might need them in production
 gem 'minitest-rails'
@@ -114,6 +116,7 @@ group :development do
     git: 'https://github.com/mauriciopasquier/capistrano-config_provider.git',
     require: false
   gem 'capistrano-rails-collection'
+  gem 'capistrano3-delayed-job'
   gem 'brakeman', require: false
 end
 
