@@ -92,6 +92,7 @@ gem 'activeadmin-globalize',
 # TODO Review compression config
 gem 'dalli'
 gem 'delayed_job_active_record'
+gem 'daemons'
 
 
 ## Development but we might need them in production

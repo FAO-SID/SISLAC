@@ -444,6 +444,7 @@ DEPENDENCIES
   capistrano3-delayed-job
   coffee-rails
   countries
+  daemons
   dalli
   database_cleaner
   delayed_job_active_record
