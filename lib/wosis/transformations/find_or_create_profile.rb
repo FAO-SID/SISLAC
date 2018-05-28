@@ -1,5 +1,7 @@
 # Finds or creates a Profile uniquely identified based on its alphanumeric id
 # (`numero`).
+require 'ap'
+
 class FindOrCreateProfile
   attr_reader :release_date
 
@@ -23,7 +25,10 @@ class FindOrCreateProfile
 
     perfil.save!
 
-    row[:sislac_profile_id] = perfil.to_param
     row
+  rescue ActiveRecord::RecordInvalid
+    ap row
+
+    raise
   end
 end

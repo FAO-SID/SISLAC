@@ -1,6 +1,9 @@
-require 'wosis/sources/profiles_csv_source'
+# Parse WoSIS database from the official dump
+require 'wosis/sources/csv_source'
 require 'wosis/transformations/filter_by_country'
+require 'wosis/transformations/filter_by_profile'
 require 'wosis/transformations/find_or_create_profile'
+require 'wosis/transformations/find_or_create_layer'
 
 # AN/ANT is deprecated, so it's not recognizable by 'countries' gem. We have to
 # treat it as an exception until we develop something for obsolete data.
@@ -24,12 +27,12 @@ class Wosis
 
   def import!
     import_profiles! profiles_file_name
-    # import_layers!
+    import_layers! layers_file_name
   end
 
   def import_profiles!(file)
     job = Kiba.parse do
-      source ProfilesCsvSource, file
+      source CsvSource, file
 
       transform FilterByCountry, iso_codes: LAC
       transform FindOrCreateProfile, release_date: Date.new(2016, 07)
@@ -38,7 +41,22 @@ class Wosis
     Kiba.run(job)
   end
 
+  def import_layers!(file)
+    job = Kiba.parse do
+      source CsvSource, file
+
+      transform FilterByProfile
+      transform FindOrCreateLayer
+    end
+
+    Kiba.run(job)
+  end
+
   def profiles_file_name
     "#{file_prefix}_profiles.txt"
+  end
+
+  def layers_file_name
+    "#{file_prefix}_layers.txt"
   end
 end

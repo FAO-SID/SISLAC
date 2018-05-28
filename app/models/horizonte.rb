@@ -25,13 +25,6 @@ class Horizonte < ActiveRecord::Base
                                 reject_if: :all_blank
 
   validates :perfil, presence: true
-  # TODO Extraer mensaje
-  validates :profundidad_superior, :profundidad_inferior,
-    numericality: {
-      greater_than_or_equal_to: 0,
-      less_than_or_equal_to: 2000,
-      allow_nil: true
-    }
 
   delegate :publico, :usuario, :usuario_id, to: :perfil
   delegate :present?, to: :analitico, prefix: true

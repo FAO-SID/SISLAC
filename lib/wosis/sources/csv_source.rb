@@ -1,6 +1,7 @@
+# Extract data from csv files one row at a time
 require 'csv'
 
-class ProfilesCsvSource
+class CsvSource
   attr_reader :input_file
 
   def initialize(input_file)
