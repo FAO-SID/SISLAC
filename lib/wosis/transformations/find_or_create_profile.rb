@@ -23,6 +23,9 @@ class FindOrCreateProfile
       perfil.build_ubicacion y: row[:latitude], x: row[:longitude]
     end
 
+    # FIXME Rewrite inside the block
+    perfil.country = row[:country_name]
+
     perfil.save!
 
     row

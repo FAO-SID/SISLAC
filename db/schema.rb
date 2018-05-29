@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180525180033) do
+ActiveRecord::Schema.define(version: 20180529080924) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -418,6 +418,7 @@ ActiveRecord::Schema.define(version: 20180525180033) do
     t.string   "vegetacion_o_cultivos"
     t.integer  "serie_id"
     t.text     "observaciones"
+    t.string   "country"
   end
 
   add_index "perfiles", ["serie_id"], name: "index_perfiles_on_serie_id", using: :btree
