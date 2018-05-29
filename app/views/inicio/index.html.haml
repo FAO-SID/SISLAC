@@ -11,3 +11,7 @@
                   icon_url: asset_path('leaflet/dist/images/marker-icon.png'),
                   icon_retina_url: asset_path('leaflet/dist/images/marker-icon-2x.png'),
                   shadow_url: asset_path('leaflet/dist/images/marker-shadow.png') } }
+
+-# FIXME Cargar dinámicamente desde un js
+-# FIXME Load conditionally
+= javascript_include_tag "http://maps.google.com/maps/api/js?v=3&key=#{Rails.application.secrets.google_api_key}&libraries=geometry"
