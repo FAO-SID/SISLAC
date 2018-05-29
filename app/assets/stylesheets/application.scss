@@ -1,9 +1,8 @@
 // Manifest en scss requerido por bootstrap. Hay que usar imports en vez de
 // requires.
 
-// Las variables de bootstrap se redefinen antes de importarlo. Lista de
-// variables:
-//   https://github.com/twbs/bootstrap-rubygem/blob/d12646e808a250b1130d1ddad3e82546d83c4b55/assets/stylesheets/bootstrap/_variables.scss
+// Bootstrap variables must be redefined before exporting it.
+@import 'bootstrap_variables';
 @import 'bootstrap';
 
 // Por problemas con google maps:
