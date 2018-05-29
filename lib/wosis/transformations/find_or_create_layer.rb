@@ -15,12 +15,12 @@ class FindOrCreateLayer
       h.build_analitico do |a|
         a.densidad_aparente = row[:bdws_value_avg]
         # FIXME It has non % values
-        # a.ca_co3 = row[:tceq_value_avg]
+        a.ca_co3 = row[:tceq_value_avg] if row[:tceq_value_avg].to_f < 100
         a.gravas = row[:cfvo_value_avg]
         a.t = row[:ecec_value_avg]
         a.conductividad = row[:elco_value_avg]
         # FIXME It has non % values
-        # a.carbono_organico_c = row[:orgc_value_avg]
+        a.carbono_organico_c = row[:orgc_value_avg] if row[:orgc_value_avg].to_f < 100
         a.ph_h2o = row[:phaq_value_avg]
         a.ph_kcl = row[:phkc_value_avg]
         a.arcilla = row[:clay_value_avg]

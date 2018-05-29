@@ -387,6 +387,9 @@ es:
         bdws:
           long: Densidad
           short: BDWS
+        tceq:
+          long: CA CO3
+          short: TCEQ
         cfvo:
           long: Gravas
           short: CFVO
@@ -396,6 +399,9 @@ es:
         elco:
           long: Conductividad
           short: ELCO
+        orgc:
+          long: Carbono orgánico
+          short: ORGC
         phaq:
           long: pH en H2O (1:2,5)
           short: PHAQ
