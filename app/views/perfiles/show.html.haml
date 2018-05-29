@@ -4,16 +4,11 @@
       - if can?(:update, @perfil) || can?(:modificar, @perfil)
         .btn-group.btn-group-sm.mr-2
           = link_to t('editar'), edit_perfil_path(@perfil), class: 'btn btn-primary'
-          = link_to t('permisos'), permisos_path(modelo: 'perfil', id: @perfil), class: 'btn btn-primary'
           - if can?(:delete, @perfil)
             = link_to t('eliminar'), @perfil, data: { confirm: t(:confirmar) }, method: :delete, class: 'btn btn-primary'
       - if can? :read, @perfil
         .btn-group.btn-group-sm.mr-2
           = link_to t('exportar'), perfil_path(@perfil, format: :csv), class: 'btn btn-primary'
-          = link_to t('.mostrar_analiticos'), perfil_analiticos_path(@perfil), class: 'btn btn-primary'
-      - if can? :read, @perfil => Adjunto
-        .btn-group.btn-group-sm.mr-2
-          = link_to t('.mostrar_adjuntos'), perfil_adjuntos_path(@perfil), class: 'btn btn-primary'
       .btn-group.btn-group-sm
         = link_to t('volver'), perfiles_path, class: 'btn btn-primary'
 
@@ -23,11 +18,63 @@
     %hr
     %dd
       %dl.row
-        %dt.col-sm-4= t '.profile_date'
+        %dt.col-sm-4= t '.profile.date'
         %dd.col-sm-8= @perfil.decorate.fecha
 
-        %dt.col-sm-4= t '.country'
+        %dt.col-sm-4= t '.profile.country'
         %dd.col-sm-8= @perfil.decorate.country
 
-        %dt.col-sm-4= t '.coordinates'
+        %dt.col-sm-4= t '.profile.coordinates'
         %dd.col-sm-8= @perfil.decorate.coordinates
+
+.row.layers
+  %dl.col
+    %dt= t '.layers_title'
+    %dd
+      .table-responsive
+        %table.table.table-sm.table-hover
+          %thead
+            %tr
+              %th{ scope: 'col', data: { toggle: 'tooltip', placement: 'right' }, title: t('.layer.type.long') }
+                = t '.layer.type.short'
+              %th{ scope: 'col', data: { toggle: 'tooltip', placement: 'right' }, title: t('.layer.top.long') }
+                = t '.layer.top.short'
+              %th{ scope: 'col', data: { toggle: 'tooltip', placement: 'right' }, title: t('.layer.bottom.long') }
+                = t '.layer.bottom.short'
+              %th{ scope: 'col', data: { toggle: 'tooltip', placement: 'right' }, title: t('.layer.bdws.long') }
+                = t '.layer.bdws.short'
+              %th{ scope: 'col', data: { toggle: 'tooltip', placement: 'right' }, title: t('.layer.cfvo.long') }
+                = t '.layer.cfvo.short'
+              %th{ scope: 'col', data: { toggle: 'tooltip', placement: 'right' }, title: t('.layer.ecec.long') }
+                = t '.layer.ecec.short'
+              %th{ scope: 'col', data: { toggle: 'tooltip', placement: 'right' }, title: t('.layer.elco.long') }
+                = t '.layer.elco.short'
+              %th{ scope: 'col', data: { toggle: 'tooltip', placement: 'right' }, title: t('.layer.phaq.long') }
+                = t '.layer.phaq.short'
+              %th{ scope: 'col', data: { toggle: 'tooltip', placement: 'right' }, title: t('.layer.phkc.long') }
+                = t '.layer.phkc.short'
+              %th{ scope: 'col', data: { toggle: 'tooltip', placement: 'right' }, title: t('.layer.clay.long') }
+                = t '.layer.clay.short'
+              %th{ scope: 'col', data: { toggle: 'tooltip', placement: 'right' }, title: t('.layer.silt.long') }
+                = t '.layer.silt.short'
+              %th{ scope: 'col', data: { toggle: 'tooltip', placement: 'right' }, title: t('.layer.sand.long') }
+                = t '.layer.sand.short'
+              %th{ scope: 'col', data: { toggle: 'tooltip', placement: 'right' }, title: t('.layer.wrvo.long') }
+                = t '.layer.wrvo.short'
+
+          %tbody
+            - @perfil.decorate.horizontes.each do |layer|
+              %tr
+                %th{ scope: 'row' }= layer.tipo
+                %td= layer.profundidad_superior
+                %td= layer.profundidad_inferior
+                %td= layer.analitico.densidad_aparente
+                %td= layer.analitico.gravas
+                %td= layer.analitico.t
+                %td= layer.analitico.conductividad
+                %td= layer.analitico.ph_h2o
+                %td= layer.analitico.ph_kcl
+                %td= layer.analitico.arcilla
+                %td= layer.analitico.limo_2_50
+                %td= layer.analitico.arena_total
+                %td= layer.analitico.agua_util

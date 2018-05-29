@@ -374,12 +374,54 @@ es:
       ubicacion: Ubicación
       volver: Cancelar
     show:
-      coordinates: Coordenadas
-      country: País
+      layer:
+        type:
+          long: Tipo
+          short: Tipo
+        top:
+          long: Profundidad superior
+          short: Sup
+        bottom:
+          long: Profundidad inferior
+          short: Inf
+        bdws:
+          long: Densidad
+          short: BDWS
+        cfvo:
+          long: Gravas
+          short: CFVO
+        ecec:
+          long: Capacidad de intercambio catiónico
+          short: ECEC
+        elco:
+          long: Conductividad
+          short: ELCO
+        phaq:
+          long: pH en H2O (1:2,5)
+          short: PHAQ
+        phkc:
+          long: pH en KCL (1:2,5)
+          short: PHKC
+        clay:
+          long: Arcilla < 2 µ
+          short: Arcilla
+        silt:
+          long: Limo 2-50 µ
+          short: Limo
+        sand:
+          long: Arena total
+          short: Arena
+        wrvo:
+          long: Agua útil
+          short: WRVO
+      layers_title: Horizontes
       map_view: Mapa de la zona
       mostrar_adjuntos: Mostrar adjuntos
       mostrar_analiticos: Mostrar analíticos
-      profile_date: Fecha
+      profile:
+        coordinates: Coordenadas
+        country: País
+        date: Fecha
   permisos: Permisos
   ransack:
     all: todas
