@@ -256,7 +256,7 @@ class PerfilesController < AutorizadoController
         @metodo = 'lower(ubicaciones.descripcion)'
       when 'nombre'
         @metodo = "lower(series.#{@metodo})"
-      when 'numero'
+      when 'numero', 'country'
         @metodo = "lower(perfiles.#{@metodo})"
       else
         # A los date y boolean no se les aplica lower()
@@ -278,7 +278,7 @@ class PerfilesController < AutorizadoController
     # Revisa el input del usuario para los métodos de ordenamiento. Ordena según
     # la +fecha+ por default.
     def metodo_de_ordenamiento
-      %w[ fecha nombre ubicacion numero modal
+      %w[ fecha nombre ubicacion numero modal country
         ].include?(params[:por]) ? params[:por] : 'fecha'
     end
 

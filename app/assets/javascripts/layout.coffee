@@ -6,3 +6,6 @@ $(window)
   .resize ->
     $('.hide-on-resize').collapse('hide')
     $('.show-on-resize').collapse('show')
+
+jQuery ->
+  $('[data-toggle="tooltip"]').tooltip()
