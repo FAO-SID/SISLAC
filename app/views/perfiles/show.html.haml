@@ -1,23 +1,39 @@
-.botonera
-  - if can?(:update, @perfil) || can?(:modificar, @perfil)
-    = link_to t('editar'), edit_perfil_path(@perfil)
-    = '|'
-    = link_to t('permisos'), permisos_path(modelo: 'perfil', id: @perfil)
-    = '|'
-  - if can?(:delete, @perfil)
-    = link_to t('eliminar'), @perfil, data: { confirm: t(:confirmar) }, method: :delete
-    = '|'
-  - if can? :read, @perfil
-    = link_to t('exportar'), perfil_path(@perfil, format: :csv)
-    = '|'
-    = link_to t('.mostrar_analiticos'), perfil_analiticos_path(@perfil)
-    = '|'
-  - if can? :read, @perfil => Adjunto
-    = link_to t('.mostrar_adjuntos'), perfil_adjuntos_path(@perfil)
-    = '|'
-  = link_to t('volver'), perfiles_path
+.row.botonera
+  .col
+    .btn-toolbar
+      - if can?(:update, @perfil) || can?(:modificar, @perfil)
+        .btn-group.btn-group-sm.mr-2
+          = link_to t('editar'), edit_perfil_path(@perfil), class: 'btn btn-primary'
+          = link_to t('permisos'), permisos_path(modelo: 'perfil', id: @perfil), class: 'btn btn-primary'
+          - if can?(:delete, @perfil)
+            = link_to t('eliminar'), @perfil, data: { confirm: t(:confirmar) }, method: :delete, class: 'btn btn-primary'
+      - if can? :read, @perfil
+        .btn-group.btn-group-sm.mr-2
+          = link_to t('exportar'), perfil_path(@perfil, format: :csv), class: 'btn btn-primary'
+          = link_to t('.mostrar_analiticos'), perfil_analiticos_path(@perfil), class: 'btn btn-primary'
+      - if can? :read, @perfil => Adjunto
+        .btn-group.btn-group-sm.mr-2
+          = link_to t('.mostrar_adjuntos'), perfil_adjuntos_path(@perfil), class: 'btn btn-primary'
+      .btn-group.btn-group-sm
+        = link_to t('volver'), perfiles_path, class: 'btn btn-primary'
 
-  = render 'fichas/selector', origen: perfil_path(@perfil)
+.row.attributes
+  %dl.col
+    %dt= @perfil.decorate.numero
+    %hr
+    %dd
+      %dl.row
+        %dt.col-sm-4= t '.profile_date'
+        %dd.col-sm-8= @perfil.decorate.fecha
 
--# TODO Hacer vista especial para el show (issue #41)
-= render @ficha.identificador, perfil: @perfil.decorate, bloqueado: true, mapa: true
+        %dt.col-sm-4= t '.country'
+        %dd.col-sm-8= @perfil.decorate.country
+
+        %dt.col-sm-4= t '.coordinates'
+        %dd.col-sm-8= @perfil.decorate.coordinates
+
+.row.map
+  %dl.col
+    %dt= t '.map_view'
+    %hr
+    %dd= @perfil.decorate.map

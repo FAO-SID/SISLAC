@@ -25,7 +25,7 @@ L.control.info = (opts) ->
 # https://robots.thoughtbot.com/module-pattern-in-javascript-and-coffeescript
 window.Mapa = {}
 
-# Genera el markup del popup para cada punto del geoJson
+# Genera el markup del popup para cada punto del GeoJSON
 Mapa.preparar_markup = (perfil) ->
   serie = perfil.serie
 
@@ -40,6 +40,6 @@ Mapa.preparar_markup = (perfil) ->
     '</a>'
   ].join('')
 
-# Genera el popup markup para cada punto del geoJson
+# Genera el popup para cada punto del GeoJSON
 Mapa.preparar_popup = (punto, capa) ->
   capa.bindPopup Mapa.preparar_markup(punto.properties)

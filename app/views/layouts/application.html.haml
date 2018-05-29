@@ -35,3 +35,7 @@
           = notificacion(name, msg)
 
       = yield
+
+    -# FIXME Cargar dinámicamente desde un js
+    -# FIXME Load conditionally
+    = javascript_include_tag "http://maps.google.com/maps/api/js?v=3&key=#{Rails.application.secrets.google_api_key}&libraries=geometry"

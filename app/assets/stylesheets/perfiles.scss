@@ -1,3 +1,26 @@
+// Rows on profile#index
 .row.perfil {
   border-bottom: 1px solid lightgrey;
+}
+
+// Map on profile#show
+.row.map {
+  height: 100%;
+
+  dl.col {
+    height: 100%;
+
+    dd {
+      height: 100%;
+
+      #individual-map {
+        // Ocupar el resto del espacio disponible
+        flex-grow: 1;
+
+        // Redefinir el box-sizing que aplica Bootstrap. Ver
+        // https://getbootstrap.com/docs/4.0/getting-started/introduction/#box-sizing
+        box-sizing: content-box;
+      }
+    }
+  }
 }

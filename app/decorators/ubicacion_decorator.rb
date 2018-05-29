@@ -20,12 +20,22 @@ class UbicacionDecorator < ApplicationDecorator
   end
 
   def to_s
-    source.descripcion || "#{y}, #{x}" || ''
+    source.descripcion || coordinates || ''
   end
 
-  def mapa(zoom = 9)
-    h.content_tag :div, nil, id: 'mapa',
-      data: { geojson: h.perfil_path(perfil, format: :geojson), zoom: zoom, centro: [y, x] }
+  def map(zoom = 9)
+    h.content_tag :div, nil, id: 'individual-map', data: {
+      geojson: h.perfil_path(perfil, format: :geojson),
+      center: [y, x],
+      zoom: zoom,
+      icon_url: h.asset_path('leaflet/dist/images/marker-icon.png'),
+      icon_retina_url: h.asset_path('leaflet/dist/images/marker-icon-2x.png'),
+      shadow_url: h.asset_path('leaflet/dist/images/marker-shadow.png')
+    }
+  end
+
+  def coordinates
+    [y, x].join ', '
   end
 
   private

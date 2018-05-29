@@ -1,0 +1,65 @@
+# FIXME Abstract base configuration for every map
+jQuery ->
+  map_container = $('#individual-map')
+
+  # If there is a map in this page
+  if map_container.length
+    # Configure base path to avoit leaflet trying to guess it with a bugged regex
+    # FIXME Patch leaflet or wait until they remove this path guessing
+    assets_prefix = '<%= (Rails.application.config.relative_url_root || Rails.application.config.assets.prefix).to_s %>'
+    L.Icon.Default.imagePath = assets_prefix
+
+    # Remove path prefix because between sprockets and leaflet is duplicated
+    L.Icon.Default.prototype.options = Object.assign L.Icon.Default.prototype.options, {
+      iconUrl: map_container.data('iconUrl').replace(assets_prefix, '')
+      iconRetinaUrl: map_container.data('iconRetinaUrl').replace(assets_prefix, '')
+      shadowUrl: map_container.data('shadowUrl').replace(assets_prefix, '')
+    }
+
+    # Show the world by default but use configured values if present
+    zoom = map_container.data('zoom') || 2
+    center = map_container.data('center') || [0, 0]
+
+    mapa = L.map('individual-map', {
+      center: center
+      zoom: zoom
+      zoomControl: false
+    })
+
+    osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18
+      attribution: '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors (' +
+        '<a href="http://opendatacommons.org/licenses/odbl/">ODbL</a>)'
+    })
+
+    g_terreno = L.gridLayer.googleMutant({ type: 'terrain' })
+    g_hibrido = L.gridLayer.googleMutant({ type: 'hybrid' })
+
+    # Capa inicial
+    mapa.addLayer(g_hibrido)
+
+    # Capa de clusters
+    clusters = L.markerClusterGroup()
+
+    # Control de zoom
+    L.control.zoom({
+      position: 'topright'
+    }).addTo(mapa)
+
+    # Control para cambiar de capas
+    L.control.layers({
+      'OpenStreetMap': osm
+      'Google': g_hibrido
+      'Google Terrain': g_terreno
+    }, {
+      'Perfiles públicos': clusters
+    }).addTo(mapa)
+
+    # Pide y agrega los puntos
+    $.getJSON map_container.data('geojson'), (data) ->
+      clusters.addLayer(
+        # Capa de geoJson
+        L.geoJson(data, {
+          onEachFeature: Mapa.preparar_popup
+        })
+      ).addTo(mapa)

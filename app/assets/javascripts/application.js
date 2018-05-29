@@ -25,3 +25,4 @@
 //= require layout
 //= require mapa/config
 //= require mapa/init
+//= require profiles

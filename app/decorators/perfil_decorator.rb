@@ -10,6 +10,8 @@ class PerfilDecorator < ApplicationDecorator
   decorates_association :capacidad
   decorates_association :horizontes
 
+  delegate :map, :coordinates, to: :ubicacion
+
   # Por default mostramos el año entero
   def fecha(formato = :dma)
     if source.fecha?

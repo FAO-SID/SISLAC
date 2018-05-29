@@ -374,8 +374,12 @@ es:
       ubicacion: Ubicación
       volver: Cancelar
     show:
+      coordinates: Coordenadas
+      country: País
+      map_view: Mapa de la zona
       mostrar_adjuntos: Mostrar adjuntos
       mostrar_analiticos: Mostrar analíticos
+      profile_date: Fecha
   permisos: Permisos
   ransack:
     all: todas
