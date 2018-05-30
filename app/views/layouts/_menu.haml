@@ -6,7 +6,7 @@
     - if can? :create, Perfil
       = link_to t('.perfiles.cargar'), new_perfil_path, class: 'dropdown-item'
     = link_to t('.perfiles.lista'), perfiles_path, class: 'dropdown-item'
-    = link_to t('.perfiles.exportar'), exportar_perfiles_path, class: 'dropdown-item'
+    = link_to t('.perfiles.importar'), imports_path, class: 'dropdown-item'
     .dropdown-divider
     = link_to t('.series.lista'), series_path, class: 'dropdown-item'
 

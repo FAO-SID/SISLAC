@@ -4,7 +4,7 @@ require 'csv'
 class CsvSource
   attr_reader :input_file, :opts
 
-  def initialize(input_file, csv_options:)
+  def initialize(input_file, csv_options: { })
     @input_file = input_file
     @opts = default_options.merge csv_options
   end

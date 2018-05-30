@@ -1,0 +1,98 @@
+%h3 Importar Perfiles y Horizontes
+
+.row
+  .col
+    Es posible importar Perfiles en el sitio cargándolos a través de un
+    = link_to t('.template'), new_import_path
+    especialmente definido, respetando la nomenclatura de las columnas.
+
+%br
+
+.row
+  .col
+    = form_tag imports_path, method: :post, multipart: true do
+      .form-group.row
+        %label.col-sm-3{ for: 'field-csv' } Archivo CSV
+        .col-sm-9= file_field_tag 'csv_import', id: 'field-csv', placeholder: 'Seleccione el archivo', required: true, class: 'form-control'
+      .form-group.row
+        .col
+          = link_to new_import_path, class: 'btn btn-primary' do
+            Descargar
+            = t('.template')
+
+          = submit_tag 'Importar perfiles', class: 'btn btn-primary'
+
+%br
+
+%h3 Descripción de las columnas a importar
+
+.row.nomenclatura
+  %dl.col
+    %dt Atributos del Perfil
+    %hr
+    %dd
+      %dl.row
+        %dt.col-sm-3 user_profile_id
+        %dd.col-sm-9 Un identificador de Perfil con el que agrupar las filas ("número")
+
+        %dt.col-sm-3 date
+        %dd.col-sm-9 La fecha de registro de los datos. Si no se completa será la fecha actual
+
+        %dt.col-sm-3 country
+        %dd.col-sm-9 El país donde está ubicado este Perfil
+
+        %dt.col-sm-3 latitude
+        %dd.col-sm-9 La latitud de las coordenadas del Perfil
+
+        %dt.col-sm-3 longitude
+        %dd.col-sm-9 La longitud de las coordenadas del Perfil
+
+    %dt Atributos del Horizonte
+    %hr
+    %dd
+      %dl.row
+        %dt.col-sm-3 user_layer_id
+        %dd.col-sm-9 Un identificador de Horizonte dentro de un mismo Perfil ("tipo")
+
+        %dt.col-sm-3 top
+        %dd.col-sm-9 La profundidad superior de esta capa
+
+        %dt.col-sm-3 bottom
+        %dd.col-sm-9 La profundidad inferior de esta capa
+
+        %dt.col-sm-3 bdws
+        %dd.col-sm-9 Densidad aparente
+
+        %dt.col-sm-3 tceq
+        %dd.col-sm-9 Ca CO3
+
+        %dt.col-sm-3 cfvo
+        %dd.col-sm-9 Gravas
+
+        %dt.col-sm-3 ecec
+        %dd.col-sm-9 Capacidad de intercambio catiónico
+
+        %dt.col-sm-3 elco
+        %dd.col-sm-9 Conductividad
+
+        %dt.col-sm-3 orgc
+        %dd.col-sm-9 Carbono orgánico
+
+        %dt.col-sm-3 phaq
+        %dd.col-sm-9 pH en H2O (1:2,5)
+
+        %dt.col-sm-3 phkc
+        %dd.col-sm-9 pH en KCL (1:2,5)
+
+        %dt.col-sm-3 clay
+        %dd.col-sm-9 Arcilla menor a 2 µ
+
+        %dt.col-sm-3 silt
+        %dd.col-sm-9 Limo 2-50 µ
+
+        %dt.col-sm-3 sand
+        %dd.col-sm-9 Arena total
+
+        %dt.col-sm-3 wrvo
+        %dd.col-sm-9 Agua útil
+

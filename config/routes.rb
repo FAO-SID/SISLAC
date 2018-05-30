@@ -29,6 +29,7 @@ Rails.application.routes.draw do
       put ':modelo/:id' => 'permisos#update',  as: 'permitir'
     end
 
+    # TODO Deprecate path_names
     with_options path_names: masculinos do |r|
 
       r.resources :perfiles do
@@ -108,6 +109,9 @@ Rails.application.routes.draw do
         end
       end
     end
+
+    # Importing CSV from Users
+    resources :imports
 
     # Rutas para la API
     namespace :api, defaults: { format: :json } do

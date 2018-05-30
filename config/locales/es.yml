@@ -235,6 +235,10 @@ es:
         cambiar_ficha: Cambiar
         create: Crear %{model}
         edit: Actualizar %{model}
+  imports:
+    index:
+      template: template
+      title: Importar
   inicio:
     index:
       title: Sistema de Información de Suelos de Latinoamérica y el Caribe
@@ -261,6 +265,7 @@ es:
       perfiles:
         cargar: Cargar
         exportar: Exportar
+        importar: Importar
         lista: Ver
         titulo: Perfiles
       proyectos:
