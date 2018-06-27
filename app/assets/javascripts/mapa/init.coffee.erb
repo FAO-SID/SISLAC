@@ -3,18 +3,6 @@ jQuery ->
 
   # If there is a map in this page
   if map_container.length
-    # Configure base path to avoit leaflet trying to guess it with a bugged regex
-    # FIXME Patch leaflet or wait until they remove this path guessing
-    assets_prefix = '<%= (Rails.application.config.relative_url_root || Rails.application.config.assets.prefix).to_s %>'
-    L.Icon.Default.imagePath = assets_prefix
-
-    # Remove path prefix because between sprockets and leaflet is duplicated
-    L.Icon.Default.prototype.options = Object.assign L.Icon.Default.prototype.options, {
-      iconUrl: map_container.data('iconUrl').replace(assets_prefix, '')
-      iconRetinaUrl: map_container.data('iconRetinaUrl').replace(assets_prefix, '')
-      shadowUrl: map_container.data('shadowUrl').replace(assets_prefix, '')
-    }
-
     # Show the world by default but use configured values if present
     zoom = map_container.data('zoom') || 2
     center = map_container.data('center') || [0, 0]
@@ -34,18 +22,18 @@ jQuery ->
     g_terreno = L.gridLayer.googleMutant({ type: 'terrain' })
     g_hibrido = L.gridLayer.googleMutant({ type: 'hybrid' })
 
-    # Capa inicial
+    # Initial layer
     mapa.addLayer(g_hibrido)
 
-    # Capa de clusters
+    # Cluster layer
     clusters = L.markerClusterGroup()
 
-    # Control de zoom
+    # Add zoom control
     L.control.zoom({
       position: 'topright'
     }).addTo(mapa)
 
-    # Control para cambiar de capas
+    # Add layer control
     L.control.layers({
       'OpenStreetMap': osm
       'Google': g_hibrido
@@ -54,7 +42,7 @@ jQuery ->
       'Perfiles públicos': clusters
     }).addTo(mapa)
 
-    # Información sobre los puntos
+    # Add info box
     L.control.info({
       title: map_container.data('infoTitle')
       text: map_container.data('infoText')
@@ -92,11 +80,12 @@ jQuery ->
       $.post $(this._container).data('seleccion-url'), coordenadas, (res) ->
         $('#avisos').html $('<div />', { id: "flash_#{res.tipo}", text: res.mensaje })
 
-    # Pide y agrega los puntos
+    # Retrieve our dataset and add it to the layer
     $.getJSON map_container.data('geojson'), (data) ->
       clusters.addLayer(
         # Capa de geoJson
         L.geoJson(data, {
-          onEachFeature: Mapa.preparar_popup
+          pointToLayer: Mapa.prepare_marker
+          onEachFeature: Mapa.prepare_popup
         })
       ).addTo(mapa)

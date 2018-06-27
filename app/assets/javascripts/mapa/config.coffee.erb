@@ -25,21 +25,37 @@ L.control.info = (opts) ->
 # https://robots.thoughtbot.com/module-pattern-in-javascript-and-coffeescript
 window.Mapa = {}
 
-# Genera el markup del popup para cada punto del GeoJSON
-Mapa.preparar_markup = (perfil) ->
-  serie = perfil.serie
+# Binds a popup box for each feature
+Mapa.prepare_popup = (feature, layer) ->
+  layer.bindPopup Mapa.popup_markup(feature.properties)
 
-  serie_html = if serie
-    "<a target='_blank' title='Serie' href='#{serie.url}'>#{serie.nombre || 'Serie'}</a> - "
-  else
-    ''
+# Generates the markup for each popup
+Mapa.popup_markup = (feature) ->
+  serie = feature.serie
+
+  serie_html =
+    if serie
+      "<a target='_blank' title='Serie' href='#{serie.url}'>#{serie.nombre || serie.id}</a> - "
+    else
+      ''
+
   [
     serie_html,
-    "<a target='_blank' title='Perfil' href='#{perfil.url}'>",
-    "#{perfil.numero || 'Perfil'}",
+    "<a target='_blank' title='feature' href='#{feature.url}'>",
+    "#{feature.numero || feature.id}",
     '</a>'
   ].join('')
 
-# Genera el popup para cada punto del GeoJSON
-Mapa.preparar_popup = (punto, capa) ->
-  capa.bindPopup Mapa.preparar_markup(punto.properties)
+# Generates a colored circle marker for each feature
+Mapa.prepare_marker = (point, latlng) ->
+  # https://clrs.cc
+  olive = '#3D9970'
+  orange = '#FF851B'
+
+  style =
+    radius: 5
+    weight: 2
+    fillOpacity: 0.5
+    color: if point.properties.publico then olive else orange
+
+  return L.circleMarker(latlng, style)

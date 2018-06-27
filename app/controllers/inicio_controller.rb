@@ -1,4 +1,4 @@
-# Prepara la página de inicio con el mapa de perfiles cargados
+# Prepares the landing page with a profile map
 class InicioController < ApplicationController
   def index
     @perfiles = Perfil.count
