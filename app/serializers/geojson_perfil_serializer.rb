@@ -1,6 +1,6 @@
 class GeojsonPerfilSerializer < ActiveModel::Serializer
   # `clase` es grupo + fase
-  attributes :id, :numero, :fecha, :clase, :serie, :url
+  attributes :id, :numero, :fecha, :clase, :serie, :url, :publico
 
   def as_json(*args)
     Rails.cache.fetch ['geojson_perfil_serializer', object] do
