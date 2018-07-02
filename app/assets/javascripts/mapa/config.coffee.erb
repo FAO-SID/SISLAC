@@ -59,3 +59,9 @@ Mapa.prepare_marker = (point, latlng) ->
     color: if point.properties.publico then olive else orange
 
   return L.circleMarker(latlng, style)
+
+Mapa.filters =
+  public_features: (feature, layer) ->
+    return feature.properties.publico
+  private_features: (feature, layer) ->
+    return !feature.properties.publico

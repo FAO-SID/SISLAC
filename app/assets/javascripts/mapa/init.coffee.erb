@@ -25,6 +25,18 @@ jQuery ->
     # Initial layer
     mapa.addLayer(g_hibrido)
 
+    public_features = L.geoJson(null, {
+      filter: Mapa.filters.public_features
+      pointToLayer: Mapa.prepare_marker
+      onEachFeature: Mapa.prepare_popup
+    })
+
+    private_features = L.geoJson(null, {
+      filter: Mapa.filters.private_features
+      pointToLayer: Mapa.prepare_marker
+      onEachFeature: Mapa.prepare_popup
+    })
+
     # Cluster layer
     clusters = L.markerClusterGroup()
 
@@ -39,7 +51,7 @@ jQuery ->
       'Google': g_hibrido
       'Google Terrain': g_terreno
     }, {
-      'Perfiles públicos': clusters
+      'Perfiles': clusters
     }).addTo(mapa)
 
     # Add info box
@@ -82,10 +94,9 @@ jQuery ->
 
     # Retrieve our dataset and add it to the layer
     $.getJSON map_container.data('geojson'), (data) ->
-      clusters.addLayer(
-        # Capa de geoJson
-        L.geoJson(data, {
-          pointToLayer: Mapa.prepare_marker
-          onEachFeature: Mapa.prepare_popup
-        })
-      ).addTo(mapa)
+      public_features.addData(data)
+      private_features.addData(data)
+
+      clusters.addLayer(public_features)
+      clusters.addLayer(private_features)
+      clusters.addTo(mapa)
