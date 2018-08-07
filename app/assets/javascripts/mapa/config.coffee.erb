@@ -49,14 +49,15 @@ Mapa.popup_markup = (feature) ->
 # Generates a colored circle marker for each feature
 Mapa.prepare_marker = (point, latlng) ->
   # https://clrs.cc
-  olive = '#3D9970'
-  orange = '#FF851B'
+  accessible = '#0d6cac'
+  restricted = '#f58231'
 
   style =
     radius: 5
-    weight: 2
-    fillOpacity: 0.5
-    color: if point.properties.publico then olive else orange
+    weight: 1
+    fillOpacity: 0.7
+    fillColor: if point.properties.publico then accessible else restricted
+    color: '#000000'
 
   return L.circleMarker(latlng, style)
 
