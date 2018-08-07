@@ -1,6 +1,6 @@
 # Custom application configuration
 Rails.application.configure do
-  config.app_name = 'SiSINTA'
+  config.app_name = 'SiSLAC'
 
   # Configuración default para la validación de las coordenadas (WGS 84).
   # Latitud es y, longitud es x.
