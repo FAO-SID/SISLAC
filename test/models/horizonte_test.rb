@@ -11,28 +11,6 @@ class HorizonteTest < ActiveSupport::TestCase
     it 'requiere perfil' do
       build(:horizonte, perfil: nil).wont_be :valid?
     end
-
-    it 'profundidad_inferior debe estar entre 0 y 2000' do
-      build(:horizonte, profundidad_inferior: -1).wont_be :valid?
-
-      build(:horizonte, profundidad_inferior: 0).must_be :valid?
-      build(:horizonte, profundidad_inferior: 100).must_be :valid?
-      build(:horizonte, profundidad_inferior: 1000).must_be :valid?
-      build(:horizonte, profundidad_inferior: 2000).must_be :valid?
-
-      build(:horizonte, profundidad_inferior: 2001).wont_be :valid?
-    end
-
-    it 'profundidad_superior debe estar entre 0 y 2000' do
-      build(:horizonte, profundidad_superior: -1).wont_be :valid?
-
-      build(:horizonte, profundidad_superior: 0).must_be :valid?
-      build(:horizonte, profundidad_superior: 100).must_be :valid?
-      build(:horizonte, profundidad_superior: 1000).must_be :valid?
-      build(:horizonte, profundidad_superior: 2000).must_be :valid?
-
-      build(:horizonte, profundidad_superior: 2001).wont_be :valid?
-    end
   end
 
   describe 'colores' do

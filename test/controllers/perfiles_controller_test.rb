@@ -184,12 +184,13 @@ describe PerfilesController do
 
       serializado['id'].must_equal subject.id
       serializado['numero'].must_equal subject.numero
+      serializado['publico'].must_equal subject.publico
       serializado['fecha'].must_equal subject.decorate.fecha
       serializado['clase'].must_equal subject.decorate.clase
       serializado['url'].must_equal perfil_url(subject)
 
       # Todas las llaves testeadas más la serie
-      serializado.count.must_equal 6
+      serializado.count.must_equal 7
     end
 
     it 'serializa la serie con nombre y url' do

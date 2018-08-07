@@ -24,8 +24,9 @@
         %dt.col-sm-4= t '.profile.country'
         %dd.col-sm-8= @perfil.decorate.country
 
-        %dt.col-sm-4= t '.profile.coordinates'
-        %dd.col-sm-8= @perfil.decorate.coordinates
+        - if @perfil.ubicacion.present?
+          %dt.col-sm-4= t '.profile.coordinates'
+          %dd.col-sm-8= @perfil.decorate.coordinates
 
 .row.layers
   %dl.col
