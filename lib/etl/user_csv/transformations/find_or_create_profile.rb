@@ -5,6 +5,12 @@ require 'ap'
 module Etl
   module UserCsv
     class FindOrCreateProfile
+      attr_accessor :owner
+
+      def initialize(owner)
+        @owner = owner
+      end
+
       def process(row)
         profile = Perfil.find_or_initialize_by numero: row[:user_profile_id] do |profile|
           # FIXME Remove requirement of having a date in the Profile
@@ -14,6 +20,9 @@ module Etl
 
           # TODO Make Profiles public by default.
           profile.publico = true
+
+          # Save current user as data owner
+          profile.usuario = owner
 
           profile.build_ubicacion y: row[:latitude], x: row[:longitude]
         end

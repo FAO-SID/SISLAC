@@ -21,12 +21,17 @@
         %dt.col-sm-4= t '.profile.date'
         %dd.col-sm-8= @perfil.decorate.fecha
 
-        %dt.col-sm-4= t '.profile.country'
-        %dd.col-sm-8= @perfil.decorate.country
+        - if @perfil.country.present?
+          %dt.col-sm-4= t '.profile.country'
+          %dd.col-sm-8= @perfil.decorate.country
 
         - if @perfil.ubicacion.present?
           %dt.col-sm-4= t '.profile.coordinates'
           %dd.col-sm-8= @perfil.decorate.coordinates
+
+        - if @perfil.usuario.present?
+          %dt.col-sm-4= t '.profile.user'
+          %dd.col-sm-8= @perfil.decorate.usuario
 
 .row.layers
   %dl.col

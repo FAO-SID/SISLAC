@@ -433,6 +433,7 @@ es:
         coordinates: Coordenadas
         country: País
         date: Fecha
+        user: Cargado por
   permisos: Permisos
   ransack:
     all: todas

@@ -6,12 +6,12 @@ require 'etl/user_csv/transformations/find_or_create_layer'
 module Etl
   module UserCsv
     class Job
-      def import!(file)
+      def import!(file, owner = nil)
         job = Kiba.parse do
           source CsvSource, file
 
           # Adds a `system_profile_id` to the row
-          transform FindOrCreateProfile
+          transform FindOrCreateProfile, owner
           transform FindOrCreateLayer
         end
 
