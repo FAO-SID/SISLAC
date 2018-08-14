@@ -2,16 +2,20 @@
 class ImportsController < AutorizadoController
   include GeojsonCache
 
-  skip_authorization_check only: [:index, :new]
+  skip_authorization_check only: [:new, :template]
 
-  # Landing with explanation of the process and links to new/post
-  def index
+  # Landing with explanation of the process and form to post
+  def new
   end
 
-  # Downloads the CSV template with keyed columns
-  def new
-    send_data Import.template, filename: 'layers_template.csv',
-      type: 'text/csv', disposition: 'inline'
+  # Downloads the template with keyed columns
+  def template
+    respond_to do |format|
+      format.csv do
+        send_data Import.template, filename: 'layers_template.csv',
+          type: 'text/csv', disposition: 'inline'
+      end
+    end
   end
 
   # Uploads a CSV file with layer information

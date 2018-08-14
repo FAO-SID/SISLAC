@@ -111,7 +111,11 @@ Rails.application.routes.draw do
     end
 
     # Importing CSV from Users
-    resources :imports
+    resources :imports, only: [:new, :create] do
+      collection do
+        get 'template'
+      end
+    end
 
     # Rutas para la API
     namespace :api, defaults: { format: :json } do

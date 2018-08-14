@@ -2,14 +2,14 @@
   .col
     .btn-toolbar
       .btn-group.btn-group-sm
-        = link_to new_import_path, class: 'btn btn-primary' do
+        = link_to template_imports_path(format: :csv), class: 'btn btn-primary' do
           = t '.download'
 
 .row
   .col
     = t '.help_html',
         import: link_to(t('.import'), '#field-csv'),
-        template: link_to(t('.template'), new_import_path)
+        template: link_to(t('.template'), template_imports_path(format: :csv))
 
 .row.nomenclature
   %dl.col
