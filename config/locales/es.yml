@@ -237,8 +237,43 @@ es:
         edit: Actualizar %{model}
   imports:
     index:
-      template: template
-      title: Importar
+      csv_spreadsheet: Planilla de datos (formato CSV)
+      desc:
+        bdws: Densidad aparente
+        bottom: La profundidad inferior de esta capa
+        cfvo: Gravas
+        clay: Arcilla menor a 2 µ
+        country: El país donde está ubicado este Perfil
+        date: La fecha de registro de los datos. Si no se completa será la fecha actual
+        ecec: Capacidad de intercambio catiónico
+        elco: Conductividad
+        latitude: La latitud de las coordenadas del Perfil
+        longitude: La longitud de las coordenadas del Perfil
+        orgc: Carbono orgánico
+        phaq: pH en H2O (1:2,5)
+        phkc: pH en KCL (1:2,5)
+        sand: Arena total
+        silt: Limo 2-50 µ
+        tceq: Ca CO3
+        top: La profundidad superior de esta capa
+        user_layer_id: Un identificador de Horizonte dentro de un mismo Perfil ("tipo")
+        user_profile_id: Un identificador de Perfil con el que agrupar las filas ("número")
+        wrvo: Agua útil
+      download: Descargar plantilla
+      help_html: Es posible %{import} perfiles en el sitio cargándolos a través de
+        una %{template} especialmente definida, respetando la siguiente
+        nomenclatura y unidades de las columnas.
+      import: importar
+      import_submit: Importar perfiles
+      layer_attributes: Atributos del Horizonte
+      placeholder: Seleccione el archivo
+      profile_attributes: Atributos del Perfil
+      template: plantilla
+      title: Importar Perfiles y Horizontes
+      unit:
+        alphanumeric: alfanumérico
+        date: aaaa-mm-dd
+        signed_decimal: decimal signado
   inicio:
     index:
       title: Sistema de Información de Suelos de Latinoamérica y el Caribe
