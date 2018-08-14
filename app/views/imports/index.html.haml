@@ -106,7 +106,9 @@
     = form_tag imports_path, method: :post, multipart: true do
       .form-group.row
         %label.col-sm-3{ for: 'field-csv' }= t '.csv_spreadsheet'
-        .col-sm-9= file_field_tag 'csv_import', id: 'field-csv', placeholder: t('.placeholder'), required: true, class: 'form-control'
+        .col-sm-9= file_field_tag 'csv_import',
+          id: 'field-csv', class: 'form-control', placeholder: t('.placeholder'),
+          required: true, accept: 'text/csv'
       .form-group.row
         .col
           = submit_tag t('.import_submit'), class: 'btn btn-primary'
