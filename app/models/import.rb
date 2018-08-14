@@ -1,14 +1,14 @@
-require 'etl/user_csv'
-
 # Validates and executes an import process based on a CSV file
 # TODO Validate csv format, handle error messages
-class Import
-  attr_accessor :csv, :owner
 
-  # FIXME Pass owner to Kiba Job
-  def initialize(csv:, owner:)
+require 'etl/user_csv'
+
+class Import
+  attr_accessor :csv, :profile_attributes
+
+  def initialize(csv:, profile_attributes:)
     @csv = csv
-    @owner = owner
+    @profile_attributes = profile_attributes
   end
 
   def self.headers
@@ -43,7 +43,7 @@ class Import
   end
 
   def save
-    Etl::UserCsv::Job.new.import! csv, owner
+    Etl::UserCsv::Job.new.import! csv, profile_attributes
 
     true
   rescue

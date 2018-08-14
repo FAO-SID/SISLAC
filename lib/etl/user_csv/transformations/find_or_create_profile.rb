@@ -1,14 +1,15 @@
 # Finds or creates a Profile uniquely identified with a `user_profile_id`
 # (stored in `numero` for now)
+
 require 'ap'
 
 module Etl
   module UserCsv
     class FindOrCreateProfile
-      attr_accessor :owner
+      attr_accessor :attributes
 
-      def initialize(owner)
-        @owner = owner
+      def initialize(attributes)
+        @attributes = attributes
       end
 
       def process(row)
@@ -21,14 +22,13 @@ module Etl
           # TODO Make Profiles public by default.
           profile.publico = true
 
-          # Save current user as data owner
-          profile.usuario = owner
-
           profile.build_ubicacion y: row[:latitude], x: row[:longitude]
         end
 
-        profile.save!
+        # Updates and tries to save the Profile with bulk defined attributes
+        profile.update! attributes
 
+        # Preserve the generated Profile id within data row
         row[:system_profile_id] = profile.to_param
 
         row

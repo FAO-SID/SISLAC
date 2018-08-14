@@ -20,7 +20,7 @@ class ImportsController < AutorizadoController
 
     file = params[:csv_import]
 
-    if Import.new(csv: file.path, owner: current_usuario).save
+    if Import.new(csv: file.path, profile_attributes: import_params).save
       expire_geojson
 
       flash[:notice] = 'Perfiles importados correctamente'
@@ -41,5 +41,9 @@ class ImportsController < AutorizadoController
 
   def titulo_de_la_accion
     I18n.t 'imports.index.title'
+  end
+
+  def import_params
+    { usuario: current_usuario }
   end
 end
