@@ -4,12 +4,9 @@
 require 'etl/user_csv'
 
 class Import
-  attr_accessor :csv, :profile_attributes
+  include ActiveModel::Model
 
-  def initialize(csv:, profile_attributes:)
-    @csv = csv
-    @profile_attributes = profile_attributes
-  end
+  attr_accessor :csv, :profile_attributes
 
   def self.headers
     %w{
