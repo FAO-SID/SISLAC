@@ -5,14 +5,6 @@
   = field_set_tag 'Editá tus preferencias', class: 'celeste_oscuro span-24' do
 
     .span-24
-      .span-3= f.label :srid, 'SRID por defecto'
-      .span-9.last= f.collection_select :srid, formatos_de_coordenadas, :srid, :descripcion
-
-    .span-24
-      .span-3= f.label :ficha, 'Ficha para perfiles'
-      .span-9.last= f.collection_select :ficha_id, Ficha.all, :id, :nombre
-
-    .span-24
       .span-3= f.label :idioma, 'Idioma preferido'
       .span-9.last= f.select :idioma, I18n.available_locales.map(&:to_s)
 
