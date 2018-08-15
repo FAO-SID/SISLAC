@@ -23,9 +23,9 @@ class ImportsController < AutorizadoController
   def create
     authorize! :create, Perfil
 
-    file = params[:csv_import]
+    import = Import.new import_params.merge({ user: current_usuario })
 
-    if Import.new(csv: file.path, profile_attributes: import_params).save
+    if import.save
       expire_geojson
 
       flash[:notice] = 'Perfiles importados correctamente'
@@ -35,7 +35,7 @@ class ImportsController < AutorizadoController
 
     respond_to do |format|
       format.html do
-        redirect_to imports_path
+        redirect_to new_import_path
       end
     end
   end
@@ -49,6 +49,8 @@ class ImportsController < AutorizadoController
   end
 
   def import_params
-    { usuario: current_usuario }
+    params.require(:import).permit(
+      :file, :producer, :type_id
+    )
   end
 end

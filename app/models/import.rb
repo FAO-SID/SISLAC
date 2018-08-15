@@ -6,7 +6,7 @@ require 'etl/user_csv'
 class Import
   include ActiveModel::Model
 
-  attr_accessor :file, :user, :producer
+  attr_accessor :file, :user, :producer, :type_id
 
   def self.headers
     %w{
@@ -40,7 +40,9 @@ class Import
   end
 
   def save
-    Etl::UserCsv::Job.new.import! file, profile_attributes
+    # We could capture the profile ids and redirect to a list/index of Profiles
+    # from Import controller
+    Etl::UserCsv::Job.new.import! file.path, profile_attributes
 
     true
   rescue
@@ -53,7 +55,8 @@ class Import
   def profile_attributes
     {
       usuario: user,
-      reconocedor_list: producer
+      reconocedor_list: producer,
+      type_id: type_id
     }
   end
 end

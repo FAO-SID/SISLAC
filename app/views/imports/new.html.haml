@@ -111,6 +111,10 @@
           class: 'form-control', placeholder: true,
           required: true, accept: 'text/csv'
       .form-group.row
+        %label.col-sm-3{ for: :import_type }= t '.type'
+        .col-sm-9= f.collection_select :type_id, ProfileType.all, :id, :valor,
+          class: 'form-control'
+      .form-group.row
         %label.col-sm-3{ for: :import_producer }= t '.producer'
         .col-sm-9= f.text_field :producer,
           class: 'form-control', placeholder: true

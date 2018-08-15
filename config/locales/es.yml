@@ -274,6 +274,7 @@ es:
       profile_attributes: Atributos del Perfil
       template: plantilla
       title: Importar Perfiles y Horizontes
+      type: Tipo de punto
       unit:
         alphanumeric: alfanumérico
         date: aaaa-mm-dd
