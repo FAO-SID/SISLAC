@@ -18,12 +18,15 @@
     %hr
     %dd
       %dl.row
+        %dt.col-sm-4= t '.profile.type'
+        %dd.col-sm-8= @perfil.decorate.type.titleize
+
         %dt.col-sm-4= t '.profile.date'
         %dd.col-sm-8= @perfil.decorate.fecha
 
         - if @perfil.country.present?
           %dt.col-sm-4= t '.profile.country'
-          %dd.col-sm-8= @perfil.decorate.country
+          %dd.col-sm-8= @perfil.decorate.country.titleize
 
         - if @perfil.ubicacion.present?
           %dt.col-sm-4= t '.profile.coordinates'

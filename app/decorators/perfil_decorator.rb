@@ -94,4 +94,8 @@ class PerfilDecorator < ApplicationDecorator
       'No disponible'
     end
   end
+
+  def type
+    ProfileTypeDecorator.new(source.type).to_s
+  end
 end

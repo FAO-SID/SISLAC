@@ -478,6 +478,7 @@ es:
         country: País
         date: Fecha
         producer: Producido por
+        type: Tipo de punto
         user: Cargado por
   permisos: Permisos
   ransack:
