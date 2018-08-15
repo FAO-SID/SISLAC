@@ -39,6 +39,7 @@ class Perfil < ActiveRecord::Base
   belongs_to :grupo
   belongs_to :serie, counter_cache: :cantidad_de_perfiles
 
+  belongs_to :type, inverse_of: :perfiles, class_name: 'ProfileType'
   belongs_to :drenaje
   belongs_to :escurrimiento
   belongs_to :pendiente

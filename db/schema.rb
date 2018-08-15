@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180529080924) do
+ActiveRecord::Schema.define(version: 20180815003727) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -419,9 +419,11 @@ ActiveRecord::Schema.define(version: 20180529080924) do
     t.integer  "serie_id"
     t.text     "observaciones"
     t.string   "country"
+    t.integer  "type_id"
   end
 
   add_index "perfiles", ["serie_id"], name: "index_perfiles_on_serie_id", using: :btree
+  add_index "perfiles", ["type_id"], name: "index_perfiles_on_type_id", using: :btree
   add_index "perfiles", ["usuario_id"], name: "index_perfiles_on_usuario_id", using: :btree
 
   create_table "perfiles_proyectos", id: false, force: :cascade do |t|
@@ -440,6 +442,10 @@ ActiveRecord::Schema.define(version: 20180529080924) do
   end
 
   create_table "posiciones", force: :cascade do |t|
+    t.string "valor", null: false
+  end
+
+  create_table "profile_types", force: :cascade do |t|
     t.string "valor", null: false
   end
 
