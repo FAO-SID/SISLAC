@@ -11,7 +11,7 @@ class Perfil < ActiveRecord::Base
   scope :modales, ->{ where(modal: true) }
   scope :publicos, ->{ where(publico: true) }
 
-  before_validation :asociar_serie, :asociar_fase, :asociar_grupo
+  before_validation :asociar_serie, :asociar_fase, :asociar_grupo, :set_default_type
 
   validate :fecha_no_es_del_futuro
   validates_uniqueness_of :numero, scope: :serie_id, message: :no_es_unico_en_la_serie,
@@ -138,5 +138,9 @@ class Perfil < ActiveRecord::Base
       if grupo.try(:descripcion?)
         self.grupo = Grupo.find_or_create_by(descripcion: grupo.descripcion)
       end
+    end
+
+    def set_default_type
+      self.type ||= ProfileType.find_by valor: 'soil profile'
     end
 end
