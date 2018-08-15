@@ -45,8 +45,10 @@
         %table.table.table-sm.table-hover
           %thead
             %tr
-              %th{ scope: 'col', data: { toggle: 'tooltip', placement: 'right' }, title: t('.layer.type.long') }
-                = t '.layer.type.short'
+              %th{ scope: 'col', data: { toggle: 'tooltip', placement: 'right' }, title: t('.layer.user_layer_id.long') }
+                = t '.layer.user_layer_id.short'
+              %th{ scope: 'col', data: { toggle: 'tooltip', placement: 'right' }, title: t('.layer.designation.long') }
+                = t '.layer.designation.short'
               %th{ scope: 'col', data: { toggle: 'tooltip', placement: 'right' }, title: t('.layer.top.long') }
                 = t '.layer.top.short'
               %th{ scope: 'col', data: { toggle: 'tooltip', placement: 'right' }, title: t('.layer.bottom.long') }
@@ -79,7 +81,8 @@
           %tbody
             - @perfil.decorate.horizontes.each do |layer|
               %tr
-                %th{ scope: 'row' }= layer.tipo
+                %th{ scope: 'row' }= layer.user_layer_id
+                %td= layer.tipo
                 %td= layer.profundidad_superior
                 %td= layer.profundidad_inferior
                 %td= layer.analitico.densidad_aparente

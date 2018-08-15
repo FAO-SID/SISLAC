@@ -421,9 +421,9 @@ es:
       volver: Cancelar
     show:
       layer:
-        type:
-          long: Tipo
-          short: Tipo
+        designation:
+          long: Nomenclatura
+          short: Nom
         top:
           long: Profundidad superior
           short: Sup
@@ -463,6 +463,9 @@ es:
         sand:
           long: Arena total
           short: Arena
+        user_layer_id:
+          long: Identificador
+          short: ID
         wrvo:
           long: Agua útil
           short: WRVO
