@@ -9,6 +9,7 @@ class PerfilDecorator < ApplicationDecorator
   decorates_association :humedad
   decorates_association :capacidad
   decorates_association :horizontes
+  decorates_association :license
 
   delegate :map, :coordinates, to: :ubicacion
 

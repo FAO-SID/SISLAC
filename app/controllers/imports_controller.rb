@@ -6,7 +6,7 @@ class ImportsController < AutorizadoController
 
   # Landing with explanation of the process and form to post
   def new
-    @import = Import.new
+    @import = Import.new license_id: License.default.to_param
   end
 
   # Downloads the template with keyed columns
@@ -50,7 +50,7 @@ class ImportsController < AutorizadoController
 
   def import_params
     params.require(:import).permit(
-      :file, :producer, :type_id
+      :file, :producer, :type_id, :license_id
     )
   end
 end

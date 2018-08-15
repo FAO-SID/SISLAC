@@ -11,7 +11,8 @@ class Perfil < ActiveRecord::Base
   scope :modales, ->{ where(modal: true) }
   scope :publicos, ->{ where(publico: true) }
 
-  before_validation :asociar_serie, :asociar_fase, :asociar_grupo, :set_default_type
+  before_validation :asociar_serie, :asociar_fase, :asociar_grupo,
+    :set_default_type, :set_default_license
 
   validate :fecha_no_es_del_futuro
   validates_uniqueness_of :numero, scope: :serie_id, message: :no_es_unico_en_la_serie,
@@ -38,6 +39,7 @@ class Perfil < ActiveRecord::Base
   belongs_to :fase
   belongs_to :grupo
   belongs_to :serie, counter_cache: :cantidad_de_perfiles
+  belongs_to :license
 
   belongs_to :type, inverse_of: :perfiles, class_name: 'ProfileType'
   belongs_to :drenaje
@@ -142,5 +144,9 @@ class Perfil < ActiveRecord::Base
 
     def set_default_type
       self.type ||= ProfileType.find_by valor: 'soil profile'
+    end
+
+    def set_default_license
+      self.license ||= License.default
     end
 end
