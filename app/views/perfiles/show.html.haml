@@ -32,6 +32,10 @@
           %dt.col-sm-4= t '.profile.coordinates'
           %dd.col-sm-8= @perfil.decorate.coordinates
 
+        - if @perfil.grupo.present?
+          %dt.col-sm-4= t '.profile.order'
+          %dd.col-sm-8= @perfil.decorate.grupo
+
         - if @perfil.usuario.present?
           %dt.col-sm-4= t '.profile.user'
           %dd.col-sm-8= @perfil.decorate.usuario

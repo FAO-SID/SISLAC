@@ -16,6 +16,7 @@ class Import
       longitude
       country
       date
+      order
       designation
       top
       bottom

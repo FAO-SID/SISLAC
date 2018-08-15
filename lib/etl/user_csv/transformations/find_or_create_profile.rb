@@ -23,6 +23,8 @@ module Etl
           profile.publico = true
 
           profile.build_ubicacion y: row[:latitude], x: row[:longitude]
+
+          profile.grupo = Grupo.find_or_create_by(descripcion: row[:order])
         end
 
         # Updates and tries to save the Profile with bulk defined attributes

@@ -254,6 +254,7 @@ es:
         elco: Conductividad
         latitude: La latitud de las coordenadas del Perfil
         longitude: La longitud de las coordenadas del Perfil
+        order: Orden de suelo
         orgc: Carbono orgánico
         phaq: pH en H2O (1:2,5)
         phkc: pH en KCL (1:2,5)
@@ -479,6 +480,7 @@ es:
         country: País
         date: Fecha
         license: Licencia
+        order: Orden de suelo
         producer: Producido por
         type: Tipo de punto
         user: Cargado por
