@@ -6,4 +6,8 @@ class LicenseDecorator < ApplicationDecorator
   def link
     h.link_to full_name, url, target: '_blank'
   end
+
+  def statement
+    h.raw source.statement
+  end
 end
