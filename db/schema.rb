@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180815003727) do
+ActiveRecord::Schema.define(version: 20180815045551) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -331,6 +331,7 @@ ActiveRecord::Schema.define(version: 20180815003727) do
     t.integer  "color_humedo_id"
     t.integer  "profundidad_inferior"
     t.integer  "textura_id"
+    t.string   "user_layer_id"
   end
 
   add_index "horizontes", ["perfil_id"], name: "index_horizontes_on_perfil_id", using: :btree

@@ -249,6 +249,7 @@ es:
         clay: Arcilla menor a 2 µ
         country: El país donde está ubicado este Perfil
         date: La fecha de registro de los datos. Si no se completa será la fecha actual
+        designation: Nomenclatura del Horizonte
         ecec: Capacidad de intercambio catiónico
         elco: Conductividad
         latitude: La latitud de las coordenadas del Perfil
@@ -260,7 +261,7 @@ es:
         silt: Limo 2-50 µ
         tceq: Ca CO3
         top: La profundidad superior de esta capa
-        user_layer_id: Un identificador de Horizonte dentro de un mismo Perfil ("tipo")
+        user_layer_id: Un identificador de Horizonte dentro de un mismo Perfil
         user_profile_id: Un identificador de Perfil con el que agrupar las filas ("número")
         wrvo: Agua útil
       download: Descargar plantilla

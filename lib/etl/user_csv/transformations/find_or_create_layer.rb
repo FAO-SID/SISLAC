@@ -10,9 +10,10 @@ module Etl
       def process(row)
         profile = Perfil.find row[:system_profile_id]
 
-        profile.horizontes.find_or_initialize_by tipo: row[:user_layer_id] do |h|
+        profile.horizontes.find_or_initialize_by user_layer_id: row[:user_layer_id] do |h|
           h.profundidad_superior = row[:top]
           h.profundidad_inferior = row[:bottom]
+          h.tipo = row[:designation]
 
           h.build_analitico do |a|
             a.densidad_aparente = row[:bdws]

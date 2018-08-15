@@ -15,9 +15,10 @@ class Import
       latitude
       longitude
       country
+      date
+      designation
       top
       bottom
-      date
       bdws
       tceq
       cfvo
