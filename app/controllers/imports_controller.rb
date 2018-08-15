@@ -6,6 +6,7 @@ class ImportsController < AutorizadoController
 
   # Landing with explanation of the process and form to post
   def new
+    @import = Import.new
   end
 
   # Downloads the template with keyed columns
@@ -44,7 +45,7 @@ class ImportsController < AutorizadoController
   private
 
   def titulo_de_la_accion
-    I18n.t 'imports.index.title'
+    I18n.t 'imports.new.title'
   end
 
   def import_params

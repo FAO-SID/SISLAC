@@ -6,7 +6,7 @@ require 'etl/user_csv'
 class Import
   include ActiveModel::Model
 
-  attr_accessor :csv, :profile_attributes
+  attr_accessor :file, :user, :producer
 
   def self.headers
     %w{
@@ -40,10 +40,20 @@ class Import
   end
 
   def save
-    Etl::UserCsv::Job.new.import! csv, profile_attributes
+    Etl::UserCsv::Job.new.import! file, profile_attributes
 
     true
   rescue
     false
+  end
+
+  private
+
+  # Filter attributes needed for Profile creation
+  def profile_attributes
+    {
+      usuario: user,
+      reconocedor_list: producer
+    }
   end
 end

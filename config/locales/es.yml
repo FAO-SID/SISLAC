@@ -229,6 +229,10 @@ es:
       update:
         notice: Tu cuenta fue actualizada
   helpers:
+    placeholder:
+      import:
+        file: Seleccione el archivo
+        producer: Lista separada por comas
     submit:
       perfil:
         analiticos: Datos Analíticos
@@ -266,7 +270,7 @@ es:
       import: importar
       import_submit: Importar perfiles
       layer_attributes: Atributos del Horizonte
-      placeholder: Seleccione el archivo
+      producer: Datos producidos por
       profile_attributes: Atributos del Perfil
       template: plantilla
       title: Importar Perfiles y Horizontes
@@ -468,6 +472,7 @@ es:
         coordinates: Coordenadas
         country: País
         date: Fecha
+        producer: Producido por
         user: Cargado por
   permisos: Permisos
   ransack:

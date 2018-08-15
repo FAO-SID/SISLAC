@@ -63,6 +63,7 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'forma_de_limite', 'formas_de_limite'
 
   # Se mantienen en inglés
+  inflect.irregular 'import', 'imports'
   # Act_as_taggable_on
   inflect.irregular 'tag', 'tags'
   inflect.irregular 'tagging', 'taggings'

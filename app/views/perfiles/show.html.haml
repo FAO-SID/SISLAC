@@ -33,6 +33,10 @@
           %dt.col-sm-4= t '.profile.user'
           %dd.col-sm-8= @perfil.decorate.usuario
 
+        - if @perfil.reconocedores.any?
+          %dt.col-sm-4= t '.profile.producer'
+          %dd.col-sm-8= @perfil.decorate.reconocedores
+
 .row.layers
   %dl.col
     %dt= t '.layers_title'

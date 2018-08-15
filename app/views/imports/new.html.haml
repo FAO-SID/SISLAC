@@ -8,7 +8,7 @@
 .row
   .col
     = t '.help_html',
-        import: link_to(t('.import'), '#field-csv'),
+        import: link_to(t('.import'), '#new_import'),
         template: link_to(t('.template'), template_imports_path(format: :csv))
 
 .row.nomenclature
@@ -103,12 +103,17 @@
 
 .row
   .col
-    = form_tag imports_path, method: :post, multipart: true do
+    = form_for @import, multipart: true do |f|
       .form-group.row
-        %label.col-sm-3{ for: 'field-csv' }= t '.csv_spreadsheet'
-        .col-sm-9= file_field_tag 'csv_import',
-          id: 'field-csv', class: 'form-control', placeholder: t('.placeholder'),
+        -# FIXME I18n uploader
+        %label.col-sm-3{ for: :import_file }= t '.csv_spreadsheet'
+        .col-sm-9= f.file_field :file,
+          class: 'form-control', placeholder: true,
           required: true, accept: 'text/csv'
       .form-group.row
+        %label.col-sm-3{ for: :import_producer }= t '.producer'
+        .col-sm-9= f.text_field :producer,
+          class: 'form-control', placeholder: true
+      .form-group.row
         .col
-          = submit_tag t('.import_submit'), class: 'btn btn-primary'
+          = f.submit t('.import_submit'), class: 'btn btn-primary'
