@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180815081143) do
+ActiveRecord::Schema.define(version: 20180815122850) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -361,6 +361,13 @@ ActiveRecord::Schema.define(version: 20180815081143) do
 
   add_index "ign_provincias", ["geog"], name: "ign_provincias_geog_idx", using: :gist
 
+  create_table "licenses", force: :cascade do |t|
+    t.string "name",      null: false
+    t.string "url",       null: false
+    t.string "acronym",   null: false
+    t.string "statement", null: false
+  end
+
   create_table "limites", force: :cascade do |t|
     t.integer  "horizonte_id"
     t.datetime "created_at",   null: false
@@ -421,8 +428,10 @@ ActiveRecord::Schema.define(version: 20180815081143) do
     t.text     "observaciones"
     t.string   "country"
     t.integer  "type_id"
+    t.integer  "license_id"
   end
 
+  add_index "perfiles", ["license_id"], name: "index_perfiles_on_license_id", using: :btree
   add_index "perfiles", ["serie_id"], name: "index_perfiles_on_serie_id", using: :btree
   add_index "perfiles", ["type_id"], name: "index_perfiles_on_type_id", using: :btree
   add_index "perfiles", ["usuario_id"], name: "index_perfiles_on_usuario_id", using: :btree
@@ -624,4 +633,5 @@ ActiveRecord::Schema.define(version: 20180815081143) do
 
   add_index "usuarios_roles", ["usuario_id", "rol_id"], name: "index_usuarios_roles_on_usuario_id_and_rol_id", using: :btree
 
+  add_foreign_key "perfiles", "licenses"
 end
