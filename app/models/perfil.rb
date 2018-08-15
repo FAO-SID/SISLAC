@@ -147,6 +147,6 @@ class Perfil < ActiveRecord::Base
     end
 
     def set_default_license
-      self.license ||= License.find_by acronym: 'ODC-ODbL'
+      self.license ||= License.default
     end
 end

@@ -271,6 +271,7 @@ es:
       import: importar
       import_submit: Importar perfiles
       layer_attributes: Atributos del Horizonte
+      license: Licencia
       producer: Datos producidos por
       profile_attributes: Atributos del Perfil
       template: plantilla
