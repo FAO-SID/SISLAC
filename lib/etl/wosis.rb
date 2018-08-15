@@ -8,7 +8,7 @@ require 'etl/wosis/transformations/find_or_create_layer'
 module Etl
   module Wosis
     class Job
-      attr_reader :file_prefix
+      attr_reader :file_prefix, :profile_attributes
 
       # AN/ANT is deprecated, so it's not recognizable by 'countries' gem. We have to
       # treat it as an exception until we develop something for obsolete data.
@@ -21,23 +21,24 @@ module Etl
         ANT
       }
 
-      def initialize(file_prefix:)
+      def initialize(file_prefix:, profile_attributes: {})
         raise ArgumentError if file_prefix.empty?
 
         @file_prefix = file_prefix
+        @profile_attributes = profile_attributes
       end
 
       def import!
-        import_profiles! profiles_file_name
+        import_profiles! profiles_file_name, profile_attributes
         import_layers! layers_file_name
       end
 
-      def import_profiles!(file)
+      def import_profiles!(file, profile_attributes)
         job = Kiba.parse do
           source CsvSource, file, csv_options: { col_sep: "\t" }
 
           transform FilterByCountry, iso_codes: LAC
-          transform FindOrCreateProfile, release_date: Date.new(2016, 07)
+          transform FindOrCreateProfile, profile_attributes
         end
 
         Kiba.run(job)
@@ -45,7 +46,7 @@ module Etl
 
       def import_layers!(file)
         job = Kiba.parse do
-          source CsvSource, file
+          source CsvSource, file, csv_options: { col_sep: "\t" }
 
           transform FilterByProfile
           transform FindOrCreateLayer

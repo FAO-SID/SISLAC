@@ -10,9 +10,10 @@ module Etl
 
         profile = Perfil.find_by(numero: wosis_id)
 
-        profile.horizontes.find_or_initialize_by tipo: row[:profile_layer_id] do |h|
+        profile.horizontes.find_or_initialize_by user_layer_id: row[:profile_layer_id] do |h|
           h.profundidad_superior = row[:top]
           h.profundidad_inferior = row[:bottom]
+          # TODO h.tipo = row[hods] on the 2018 snapshot
 
           h.build_analitico do |a|
             a.densidad_aparente = row[:bdws_value_avg]
