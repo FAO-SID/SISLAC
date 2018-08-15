@@ -40,6 +40,14 @@
           %dt.col-sm-4= t '.profile.producer'
           %dd.col-sm-8= @perfil.decorate.reconocedores
 
+        - if @perfil.license.present?
+          %dt.col-sm-4= t '.profile.license'
+          %dd.col-sm-8= @perfil.decorate.license.link
+
+          %dt.col-sm-4
+          %dd.col-sm-8.small
+            %em= @perfil.decorate.license.statement
+
 .row.layers
   %dl.col
     %dt= t '.layers_title'
