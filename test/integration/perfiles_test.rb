@@ -4,6 +4,7 @@ feature 'Carga de perfiles' do
   describe 'Formulario clásico' do
     background do
       create(:ficha, identificador: 'clasico', default: true)
+      create :profile_type, :default
       @usuario = loguearse_como 'Autorizado'
       @perfil = create(:perfil, usuario: @usuario).decorate
       visit edit_perfil_path(@perfil)

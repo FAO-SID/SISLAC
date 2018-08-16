@@ -1,7 +1,10 @@
 require 'test_helper'
 
 describe PerfilesController do
-  before { create :ficha, :default }
+  before do
+    create :ficha, :default
+    create :profile_type, :default
+  end
 
   describe 'autorizado' do
     let(:usuario) { loguearse_como 'Autorizado' }

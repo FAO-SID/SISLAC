@@ -11,6 +11,7 @@ class Perfil < ActiveRecord::Base
   scope :modales, ->{ where(modal: true) }
   scope :publicos, ->{ where(publico: true) }
 
+  after_initialize :set_default_type
   before_validation :asociar_serie, :asociar_fase, :asociar_grupo,
     :set_default_type, :set_default_license
 
