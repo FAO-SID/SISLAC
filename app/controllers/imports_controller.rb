@@ -50,7 +50,7 @@ class ImportsController < AutorizadoController
 
   def import_params
     params.require(:import).permit(
-      :file, :producer, :type_id, :license_id
+      :file, :type_id, :license_id, :source, :contact, :country
     )
   end
 end

@@ -136,6 +136,10 @@
         .col-sm-9= f.collection_select :type_id, ProfileType.all, :id, :valor,
           class: 'form-control'
       .form-group.row
+        %label.col-sm-3{ for: :import_country }= t '.country'
+        .col-sm-9= f.text_field :country,
+          class: 'form-control', placeholder: true
+      .form-group.row
         %label.col-sm-3{ for: :import_source }= t '.source'
         .col-sm-9= f.text_field :source,
           class: 'form-control', placeholder: true

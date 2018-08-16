@@ -23,13 +23,12 @@ module Etl
         profile.source = row[:source] if row[:source].present?
         profile.contact = row[:contact] if row[:contact].present?
         profile.license = License.find_by(acronym: row[:license]) if row[:license].present?
+        profile.country = row[:country] if row[:country].present?
 
         profile.numero = row[:user_profile_id]
 
         # FIXME Remove requirement of having a date in the Profile
         profile.fecha = row[:date] || Date.today
-
-        profile.country = row[:country]
 
         # TODO Make Profiles public by default.
         profile.publico = true

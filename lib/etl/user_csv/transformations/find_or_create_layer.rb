@@ -47,7 +47,7 @@ module Etl
         if row[:user_layer_id].present?
           { user_layer_id: row[:user_layer_id] }
         else
-          { profundidad_superior: row[:top], profundidad_inferior: [:bottom] }
+          { profundidad_superior: row[:top], profundidad_inferior: row[:bottom] }
         end
       end
     end

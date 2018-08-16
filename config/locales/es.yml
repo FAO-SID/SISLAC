@@ -249,6 +249,7 @@ es:
     new:
       csv_spreadsheet: Planilla de datos (formato CSV)
       contact: Email de contacto
+      country: País
       desc:
         bdws: Densidad aparente
         bottom: La profundidad inferior de esta capa
@@ -304,7 +305,7 @@ es:
     admin_link:
       administracion: Administración
     busqueda:
-      criterio_de_busqueda: Buscar por nombre o nº de Perfil
+      criterio_de_busqueda: Número, Fuente, Contacto o País
     cabecera:
       contacto: Contacto
       busqueda: Búsqueda

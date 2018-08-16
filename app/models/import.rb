@@ -6,7 +6,8 @@ require 'etl/user_csv'
 class Import
   include ActiveModel::Model
 
-  attr_accessor :file, :user, :producer, :type_id, :license_id, :source, :contact
+  attr_accessor :file, :user, :type_id, :license_id, :source,
+    :contact, :country
 
   def self.headers
     %w{
@@ -63,11 +64,11 @@ class Import
   def profile_attributes
     {
       usuario: user,
-      reconocedor_list: producer,
       type_id: type_id,
       license_id: license_id,
       source: source,
-      contact: contact
+      contact: contact,
+      country: country
     }
   end
 end
