@@ -47,7 +47,9 @@ class Import
     Etl::UserCsv::Job.new.import! file.path, profile_attributes
 
     true
-  rescue
+  rescue StandardError => e
+    errors.add :base, e.message
+
     false
   end
 

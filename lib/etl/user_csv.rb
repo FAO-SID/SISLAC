@@ -7,7 +7,6 @@ module Etl
   module UserCsv
     class Job
       def import!(file, profile_attributes = {})
-
         job = Kiba.parse do
           source CsvSource, file
 

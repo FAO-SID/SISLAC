@@ -30,7 +30,7 @@ class ImportsController < AutorizadoController
 
       flash[:notice] = 'Perfiles importados correctamente'
     else
-      flash[:error] = 'Sucedió un error'
+      flash[:error] = import.errors.full_messages.to_sentence
     end
 
     respond_to do |format|
