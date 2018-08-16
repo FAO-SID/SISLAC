@@ -49,7 +49,7 @@ es:
       full_messages:
         format: "%{attribute} %{message}"
       messages:
-        record_invalid: 'La validación falló: %{errors}'
+        record_invalid: "%{errors}"
         taken: ya ha sido tomado
       models:
         adjunto:
