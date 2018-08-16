@@ -74,6 +74,8 @@ end
 # Data
 gem 'kiba'
 gem 'countries'
+# icu, libicu and libicu-dev required
+# https://github.com/cowboyd/therubyracer/issues/446#issuecomment-397159092
 gem 'charlock_holmes'
 
 # Administración
@@ -94,7 +96,6 @@ gem 'activeadmin-globalize',
 gem 'dalli'
 gem 'delayed_job_active_record'
 gem 'daemons'
-
 
 ## Development but we might need them in production
 gem 'minitest-rails'
