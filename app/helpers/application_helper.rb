@@ -23,7 +23,7 @@ module ApplicationHelper
     titulo ||= columna.titleize
     direccion = (columna == metodo_de_ordenamiento && direccion_de_ordenamiento == "asc") ? "desc" : "asc"
     # TODO ver cómo agregar los `request.query_parameters` actuales sin perder el join
-    link_to titulo, { por: columna, direccion: direccion }, opciones
+    link_to titulo, params.merge({ por: columna, direccion: direccion }), opciones
   end
 
   # Variables para acceder desde la vista y armar las tablas de lookup
