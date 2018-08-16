@@ -10,7 +10,8 @@ module Etl
       def process(row)
         profile = Perfil.find row[:system_profile_id]
 
-        h = profile.horizontes.find_or_initialize_by user_layer_id: row[:user_layer_id]
+        h = profile.horizontes.find_or_initialize_by identifier(row)
+        h.user_layer_id = row[:user_layer_id]
         h.profundidad_superior = row[:top]
         h.profundidad_inferior = row[:bottom]
         h.tipo = row[:designation]
@@ -40,6 +41,14 @@ module Etl
         ap row
 
         raise ImportError.new e.message, row
+      end
+
+      def identifier(row)
+        if row[:user_layer_id].present?
+          { user_layer_id: row[:user_layer_id] }
+        else
+          { profundidad_superior: row[:top], profundidad_inferior: [:bottom] }
+        end
       end
     end
   end
