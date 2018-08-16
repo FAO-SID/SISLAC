@@ -61,7 +61,7 @@ es:
             fecha:
               es_del_futuro: todavía no llega
             numero:
-              no_es_unico_en_la_serie: debe ser único dentro de una misma serie
+              no_es_unico: debe ser único dentro de un mismo país y fuente
       template:
         body: 'Revise que los siguientes campos sean válidos:'
         header:

@@ -15,8 +15,6 @@ class Perfil < ActiveRecord::Base
     :set_default_type, :set_default_license
 
   validate :fecha_no_es_del_futuro
-  validates_uniqueness_of :numero, scope: :serie_id, message: :no_es_unico_en_la_serie,
-                          allow_nil: true, allow_blank: true
   validates_presence_of :fecha
   validates_numericality_of :cobertura_vegetal,
                             greater_than_or_equal_to: 0, less_than: 101,
