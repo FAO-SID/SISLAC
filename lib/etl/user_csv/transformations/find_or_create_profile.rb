@@ -1,5 +1,5 @@
-# Finds or creates a Profile uniquely identified with a `user_profile_id`
-# (stored in `numero` for now)
+# Finds or creates a Profile uniquely identified with a combination of columns
+# and updates it
 
 require 'ap'
 
@@ -13,22 +13,30 @@ module Etl
       end
 
       def process(row)
-        profile = Perfil.find_or_initialize_by numero: row[:user_profile_id] do |profile|
-          # FIXME Remove requirement of having a date in the Profile
-          profile.fecha = row[:date] || Date.today
+        profile = Perfil.find_or_initialize_by uuid: uuid_from(row)
 
-          profile.country = row[:country]
+        # Assign global data
+        profile.assigns_attributes attributes
 
-          # TODO Make Profiles public by default.
-          profile.publico = true
+        # Overwrites global data
+        profile.type = ProfileType.find_by(valor: row[:type]) if row[:type].present?
+        profile.source = row[:source] if row[:source].present?
+        profile.contact = row[:contact] if row[:contact].present?
+        profile.license = Licence.find_by(acronym: row[:license]) if row[:license].present?
 
-          profile.build_ubicacion y: row[:latitude], x: row[:longitude]
+        # FIXME Remove requirement of having a date in the Profile
+        profile.fecha = row[:date] || Date.today
 
-          profile.grupo = Grupo.find_or_create_by(descripcion: row[:order]) if row[:order].present?
-        end
+        profile.country = row[:country]
 
-        # Updates and tries to save the Profile with bulk defined attributes
-        profile.update! attributes
+        # TODO Make Profiles public by default.
+        profile.publico = true
+
+        profile.build_ubicacion y: row[:latitude], x: row[:longitude]
+
+        profile.grupo = Grupo.find_or_create_by(descripcion: row[:order]) if row[:order].present?
+
+        profile.save!
 
         # Preserve the generated Profile id within data row
         row[:system_profile_id] = profile.to_param
@@ -38,6 +46,18 @@ module Etl
         ap row
 
         raise ImportError.new e.message, row
+      end
+
+      # Generates a UUID for this profile with some key fields
+      def uuid_from(row)
+        key = [
+          row[:country],
+          row[:user_profile_id],
+          row[:longitude],
+          row[:latitude]
+        ]
+
+        Digest::MD5.hexdigest key.join
       end
     end
   end
