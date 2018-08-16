@@ -105,7 +105,7 @@ class PerfilDecorator < ApplicationDecorator
   end
 
   def contact
-    email = source.contact || source.usuario.email
+    email = source.contact || source.usuario.try(:email)
 
     h.link_to source.contact, "mailto:#{email}"
   end
