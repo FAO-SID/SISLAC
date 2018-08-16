@@ -36,13 +36,23 @@
           %dt.col-sm-4= t '.profile.order'
           %dd.col-sm-8= @perfil.decorate.grupo
 
+.row.attributes
+  %dl.col
+    %dt= t '.attribution'
+    %hr
+    %dd
+      %dl.row
         - if @perfil.usuario.present?
           %dt.col-sm-4= t '.profile.user'
           %dd.col-sm-8= @perfil.decorate.usuario
 
-        - if @perfil.reconocedores.any?
-          %dt.col-sm-4= t '.profile.producer'
-          %dd.col-sm-8= @perfil.decorate.reconocedores
+        - if @perfil.source.present?
+          %dt.col-sm-4= t '.profile.source'
+          %dd.col-sm-8= @perfil.decorate.source_attribution
+
+        - if @perfil.contact.present?
+          %dt.col-sm-4= t '.profile.contact'
+          %dd.col-sm-8= @perfil.decorate.contact
 
         - if @perfil.license.present?
           %dt.col-sm-4= t '.profile.license'

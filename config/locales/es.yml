@@ -27,8 +27,12 @@ es:
       perfil:
         analiticos: Datos analíticos
         publico: Público
+        numero: user_profile_id
       serie:
         simbolo: Símbolo
+      ubicacion:
+        x: longitude
+        y: latitude
       usuario:
         created_at: Fecha de creación
         current_password: Contraseña actual
@@ -432,6 +436,7 @@ es:
       ubicacion: Ubicación
       volver: Cancelar
     show:
+      attribution: Atribución
       layer:
         designation:
           long: Nomenclatura
@@ -486,12 +491,13 @@ es:
       mostrar_adjuntos: Mostrar adjuntos
       mostrar_analiticos: Mostrar analíticos
       profile:
+        contact: Contacto
         coordinates: Coordenadas
         country: País
         date: Fecha
         license: Licencia
         order: Orden de suelo
-        producer: Producido por
+        source: Fuente u origen de los datos
         type: Tipo de punto
         user: Cargado por
   permisos: Permisos

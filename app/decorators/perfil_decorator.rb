@@ -99,4 +99,12 @@ class PerfilDecorator < ApplicationDecorator
   def type
     ProfileTypeDecorator.new(source.type).to_s
   end
+
+  def source_attribution
+    source.source
+  end
+
+  def contact
+    h.link_to source.contact, "mailto:#{source.contact}"
+  end
 end
