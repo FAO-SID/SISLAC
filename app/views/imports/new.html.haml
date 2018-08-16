@@ -117,7 +117,7 @@
         %label.col-sm-3{ for: :import_file }= t '.csv_spreadsheet'
         .col-sm-9= f.file_field :file,
           class: 'form-control', placeholder: true,
-          required: true, accept: 'text/csv'
+          required: true, accept: '.csv'
       .form-group.row
         %label.col-sm-3{ for: :import_type }= t '.type'
         .col-sm-9= f.collection_select :type_id, ProfileType.all, :id, :valor,
