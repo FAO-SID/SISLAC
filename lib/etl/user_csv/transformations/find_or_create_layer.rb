@@ -15,6 +15,8 @@ module Etl
         h.profundidad_inferior = row[:bottom]
         h.tipo = row[:designation]
 
+        h.save!
+
         a = h.analitico || h.build_analitico
         a.densidad_aparente = row[:bdws]
         a.ca_co3 = row[:tceq]
@@ -28,6 +30,8 @@ module Etl
         a.limo_2_50 = row[:silt]
         a.arena_total = row[:sand]
         a.agua_util = row[:wrvo]
+
+        a.save!
 
         profile.save!
 
