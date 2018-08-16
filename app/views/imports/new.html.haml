@@ -49,6 +49,14 @@
         %dd.col-sm-3.unit= t '.unit.alphanumeric'
         %dd.col-sm-6= t '.desc.order'
 
+        %dt.col-sm-3 type
+        %dd.col-sm-3.unit= t '.unit.alphanumeric'
+        %dd.col-sm-6= t '.desc.type', types: ProfileType.pluck(:valor).join(', ')
+
+        %dt.col-sm-3 license
+        %dd.col-sm-3.unit= t '.unit.alphanumeric'
+        %dd.col-sm-6= t '.desc.license', licenses: License.pluck(:acronym).join(', ')
+
     %dt= t '.layer_attributes'
     %hr
     %dd

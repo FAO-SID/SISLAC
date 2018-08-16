@@ -256,6 +256,7 @@ es:
         ecec: Capacidad de intercambio catiónico
         elco: Conductividad
         latitude: La latitud de las coordenadas del Perfil
+        license: "Código de licencia (%{licenses})"
         longitude: La longitud de las coordenadas del Perfil
         order: Orden de suelo
         orgc: Carbono orgánico
@@ -265,6 +266,7 @@ es:
         silt: Limo 2-50 µ
         tceq: Ca CO3
         top: La profundidad superior de esta capa
+        type: "Tipo de punto (%{types})"
         user_layer_id: Un identificador de Horizonte dentro de un mismo Perfil
         user_profile_id: Un identificador de Perfil con el que agrupar las filas ("número")
         wrvo: Agua útil
