@@ -16,13 +16,13 @@ module Etl
         profile = Perfil.find_or_initialize_by uuid: uuid_from(row)
 
         # Assign global data
-        profile.assigns_attributes attributes
+        profile.assign_attributes attributes
 
         # Overwrites global data
         profile.type = ProfileType.find_by(valor: row[:type]) if row[:type].present?
         profile.source = row[:source] if row[:source].present?
         profile.contact = row[:contact] if row[:contact].present?
-        profile.license = Licence.find_by(acronym: row[:license]) if row[:license].present?
+        profile.license = License.find_by(acronym: row[:license]) if row[:license].present?
 
         # FIXME Remove requirement of having a date in the Profile
         profile.fecha = row[:date] || Date.today
