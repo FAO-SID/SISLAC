@@ -18,6 +18,11 @@ class CsvSource
   end
 
   def default_options
-    { headers: true, header_converters: :symbol, col_sep: ',' }
+    {
+      headers: true,
+      header_converters: :symbol,
+      col_sep: ',',
+      encoding: 'utf-8'
+    }
   end
 end

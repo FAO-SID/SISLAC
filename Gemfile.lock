@@ -149,6 +149,7 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    charlock_holmes (0.7.6)
     childprocess (0.5.9)
       ffi (~> 1.0, >= 1.0.11)
     climate_control (0.2.0)
@@ -438,6 +439,7 @@ DEPENDENCIES
   capistrano-rails-collection
   capistrano-rbenv
   capistrano3-delayed-job
+  charlock_holmes
   coffee-rails
   countries
   daemons

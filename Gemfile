@@ -74,6 +74,7 @@ end
 # Data
 gem 'kiba'
 gem 'countries'
+gem 'charlock_holmes'
 
 # Administración
 gem 'activeadmin'
