@@ -34,10 +34,10 @@ module Etl
         profile.save!
 
         row
-      rescue ActiveRecord::RecordInvalid
+      rescue ActiveRecord::RecordInvalid => e
         ap row
 
-        raise
+        raise ImportError.new e.message, row
       end
     end
   end

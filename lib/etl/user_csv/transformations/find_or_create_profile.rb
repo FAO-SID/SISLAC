@@ -24,7 +24,7 @@ module Etl
 
           profile.build_ubicacion y: row[:latitude], x: row[:longitude]
 
-          profile.grupo = Grupo.find_or_create_by(descripcion: row[:order])
+          profile.grupo = Grupo.find_or_create_by(descripcion: row[:order]) if row[:order].present?
         end
 
         # Updates and tries to save the Profile with bulk defined attributes
@@ -34,10 +34,10 @@ module Etl
         row[:system_profile_id] = profile.to_param
 
         row
-      rescue ActiveRecord::RecordInvalid
+      rescue ActiveRecord::RecordInvalid => e
         ap row
 
-        raise
+        raise ImportError.new e.message, row
       end
     end
   end

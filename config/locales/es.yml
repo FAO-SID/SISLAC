@@ -240,6 +240,7 @@ es:
         create: Crear %{model}
         edit: Actualizar %{model}
   imports:
+    error: "%{message} en %{row}"
     new:
       csv_spreadsheet: Planilla de datos (formato CSV)
       desc:
