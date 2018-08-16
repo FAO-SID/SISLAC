@@ -7,7 +7,7 @@
 
 .row
   .col
-    = t '.help_html',
+    %p= t '.help_html',
         import: link_to(t('.import'), '#new_import'),
         template: link_to(t('.template'), template_imports_path(format: :csv))
 
@@ -36,6 +36,14 @@
         %dt.col-sm-3 date
         %dd.col-sm-3.unit= t '.unit.date'
         %dd.col-sm-6= t '.desc.date'
+
+        %dt.col-sm-3 source
+        %dd.col-sm-3.unit= t '.unit.alphanumeric'
+        %dd.col-sm-6= t '.source'
+
+        %dt.col-sm-3 contact
+        %dd.col-sm-3.unit= t '.unit.alphanumeric'
+        %dd.col-sm-6= t '.contact'
 
         %dt.col-sm-3 order
         %dd.col-sm-3.unit= t '.unit.alphanumeric'
@@ -111,25 +119,32 @@
 
 .row
   .col
+    %h3= t '.global_data.title'
+    %p= t '.global_data.description'
+
     = form_for @import, multipart: true do |f|
+      .form-group.row
+        %label.col-sm-3{ for: :import_type }= t '.type'
+        .col-sm-9= f.collection_select :type_id, ProfileType.all, :id, :valor,
+          class: 'form-control'
+      .form-group.row
+        %label.col-sm-3{ for: :import_source }= t '.source'
+        .col-sm-9= f.text_field :source,
+          class: 'form-control', placeholder: true
+      .form-group.row
+        %label.col-sm-3{ for: :import_contact }= t '.contact'
+        .col-sm-9= f.text_field :contact,
+          class: 'form-control', placeholder: true
+      .form-group.row
+        %label.col-sm-3{ for: :import_license }= t '.license'
+        .col-sm-9= f.collection_select :license_id, License.all.decorate, :id, :full_name,
+          class: 'form-control'
       .form-group.row
         -# FIXME I18n uploader
         %label.col-sm-3{ for: :import_file }= t '.csv_spreadsheet'
         .col-sm-9= f.file_field :file,
           class: 'form-control', placeholder: true,
           required: true, accept: '.csv'
-      .form-group.row
-        %label.col-sm-3{ for: :import_type }= t '.type'
-        .col-sm-9= f.collection_select :type_id, ProfileType.all, :id, :valor,
-          class: 'form-control'
-      .form-group.row
-        %label.col-sm-3{ for: :import_producer }= t '.producer'
-        .col-sm-9= f.text_field :producer,
-          class: 'form-control', placeholder: true
-      .form-group.row
-        %label.col-sm-3{ for: :import_license }= t '.license'
-        .col-sm-9= f.collection_select :license_id, License.all.decorate, :id, :full_name,
-          class: 'form-control'
       .form-group.row
         .col
           = f.submit t('.import_submit'), class: 'btn btn-primary'

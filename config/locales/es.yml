@@ -232,7 +232,8 @@ es:
     placeholder:
       import:
         file: Seleccione el archivo
-        producer: Lista separada por comas
+        source: e.g Instituto de Suelos
+        contact: e.g. contact@institutodesuelos.gov
     submit:
       perfil:
         analiticos: Datos Analíticos
@@ -243,6 +244,7 @@ es:
     error: "%{message} en %{row}"
     new:
       csv_spreadsheet: Planilla de datos (formato CSV)
+      contact: Email de contacto
       desc:
         bdws: Densidad aparente
         bottom: La profundidad inferior de esta capa
@@ -267,6 +269,11 @@ es:
         user_profile_id: Un identificador de Perfil con el que agrupar las filas ("número")
         wrvo: Agua útil
       download: Descargar plantilla
+      global_data:
+        description: Puedes agregar los siguientes datos en masa para todos los
+          perfiles a importar. Si el mismo dato se lee desde el archivo, éste
+          último toma prioridad.
+        title: Datos globales
       help_html: Es posible %{import} perfiles en el sitio cargándolos a través de
         una %{template} especialmente definida, respetando la siguiente
         nomenclatura y unidades de las columnas.
@@ -274,8 +281,8 @@ es:
       import_submit: Importar perfiles
       layer_attributes: Atributos del Horizonte
       license: Licencia
-      producer: Datos producidos por
       profile_attributes: Atributos del Perfil
+      source: Fuente u origen de los datos
       template: plantilla
       title: Importar Perfiles y Horizontes
       type: Tipo de punto
