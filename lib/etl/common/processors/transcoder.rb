@@ -16,6 +16,9 @@ class Transcoder
   end
 
   def transcode!
+    # FIXME Do it in batches for large files
     destination.write CharlockHolmes::Converter.convert(content, detection[:encoding], 'UTF-8')
+
+    destination.rewind && destination
   end
 end

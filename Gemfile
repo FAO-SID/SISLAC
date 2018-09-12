@@ -73,6 +73,7 @@ end
 
 # Data
 gem 'kiba'
+gem 'kiba-common'
 gem 'countries'
 # icu, libicu and libicu-dev required
 # https://github.com/cowboyd/therubyracer/issues/446#issuecomment-397159092

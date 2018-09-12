@@ -1,5 +1,5 @@
 # Parse user Profile/Layer data from our custom CSV format
-require 'etl/common/sources/csv_source'
+require 'kiba-common/sources/csv'
 require 'etl/common/processors/transcoder'
 require 'etl/user_csv/transformations/find_or_create_profile'
 require 'etl/user_csv/transformations/find_or_create_layer'
@@ -15,7 +15,10 @@ module Etl
             transcoder.transcode!
           end
 
-          source CsvSource, transcoder.destination
+          source Kiba::Common::Sources::CSV, filename: transcoder.destination,
+            csv_options: {
+              headers: true, header_converters: :symbol, col_sep: ',', encoding: 'utf-8'
+            }
 
           # Adds a `system_profile_id` to the row
           transform FindOrCreateProfile, profile_attributes
