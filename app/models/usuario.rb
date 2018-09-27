@@ -16,6 +16,8 @@ class Usuario < ActiveRecord::Base
 
   before_create :asignar_valores_por_defecto
 
+  before_save :prepare_current_selection
+
   # Módulos a incluir de devise
   # TODO :confirmable cuando enviemos mails
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
@@ -70,5 +72,9 @@ class Usuario < ActiveRecord::Base
 
     def asignar_valores_por_defecto
       self.srid  ||= '4326'     # SRID para mostrar las coordenadas
+    end
+
+    def prepare_current_selection
+      self.current_selection.try(:uniq!).try(:sort!)
     end
 end
