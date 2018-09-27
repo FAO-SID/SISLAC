@@ -1,4 +1,9 @@
 .row.perfil{ class: perfil.clase_modal }
+  .checks.col-2
+    = check_box_tag 'selections[profile_id]', perfil.id,
+      current_usuario.current_selection.include?(perfil.id),
+      onchange: "$(this).data('params', 'selections[remove]=' + this.value)",
+      data: { remote: true, method: :put, url: selections_path, params: { profile_id: perfil.id } }
   .col-3.col-sm-2.order-1
     .d-none.d-md-flex= perfil.fecha
     .d-md-none.d-flex= perfil.fecha_corta
@@ -12,6 +17,3 @@
   .col-md-2.order-md-7.order-3
     -# FIXME Mover a acciones globales y dejar sólo el checkbox
     = render 'acciones', perfil: perfil
-  -# Columna usada en búsquedas, no index, por ahora (acciones masivas, etc)
-  -#.checks.col.d-none
-  -#  = check_box_tag 'perfil_ids[]', perfil.id

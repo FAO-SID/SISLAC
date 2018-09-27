@@ -41,6 +41,8 @@ class PerfilesController < AutorizadoController
   before_filter :cargar_perfiles_seleccionados, only: [:exportar, :procesar]
 
   def index
+    # Preserve all ids for selection saving
+    @perfil_ids = @perfiles.ids
     @perfiles = apply_scopes(@perfiles)
 
     respond_with @perfiles do |format|

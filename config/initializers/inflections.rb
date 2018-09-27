@@ -64,8 +64,10 @@ ActiveSupport::Inflector.inflections do |inflect|
 
   # Se mantienen en inglés
   inflect.irregular 'import', 'imports'
+  inflect.irregular 'export', 'exports'
   inflect.irregular 'type', 'types'
   inflect.irregular 'license', 'licenses'
+  inflect.irregular 'selection', 'selections'
   # Act_as_taggable_on
   inflect.irregular 'tag', 'tags'
   inflect.irregular 'tagging', 'taggings'

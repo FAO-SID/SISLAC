@@ -29,6 +29,15 @@ Rails.application.routes.draw do
       put ':modelo/:id' => 'permisos#update',  as: 'permitir'
     end
 
+    resources :exports, only: [:index]
+
+    resource :selections, only: [:update] do
+      collection do
+        put 'select'
+        put 'select_all'
+      end
+    end
+
     # TODO Deprecate path_names
     with_options path_names: masculinos do |r|
 

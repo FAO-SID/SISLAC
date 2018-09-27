@@ -26,3 +26,4 @@
 //= require mapa/config
 //= require mapa/init
 //= require profiles
+//= require selections
