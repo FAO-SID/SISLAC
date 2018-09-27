@@ -14,7 +14,7 @@ class Ability
     @perfiles = [
       Perfil, Horizonte, Analitico, Adjunto, Erosion, Ubicacion,
       Humedad, Paisaje, Pedregosidad, Limite, Consistencia,
-      Estructura, Busqueda
+      Estructura, Busqueda, Operation
     ]
     @basicos =  [Grupo, Fase, Color, Proyecto, Serie, Equipo]
     @recursos = @perfiles + @basicos

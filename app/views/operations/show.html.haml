@@ -1,0 +1,18 @@
+.row.botonera
+  .col
+    .btn-toolbar
+      .btn-group.btn-group-sm
+        = link_to t('volver'), operations_path, class: 'btn btn-primary'
+
+.row.attributes
+  %dl.col
+    %dt= 'Exportación de CSV'
+    %hr
+    %dd
+      %dl.row
+        %dt.col-sm-4= 'Estado'
+        %dd.col-sm-8= @operation.state
+
+        - if @operation.finished?
+          %dt.col-sm-4= 'Descargar'
+          %dd.col-sm-8= @operation.download_link

@@ -323,9 +323,7 @@ es:
         titulo: Otros
       perfiles:
         cargar: Cargar
-        exportar:
-          one: Exportar (%{count} Perfil)
-          other:  Exportar (%{count} Perfiles)
+        operations: Procesar
         importar: Importar
         lista: Ver
         titulo: Perfiles
@@ -334,6 +332,13 @@ es:
       series:
         lista: Series
   mostrar: Mostrar
+  operations:
+    index:
+      current: Procesos actuales
+      available: Operaciones disponibles
+      selected:
+        one: '%{count} Perfil seleccionado'
+        other: '%{count} Perfiles seleccionados'
   perfiles:
     clasico:
       descripcion_de_los_horizontes:

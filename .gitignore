@@ -17,3 +17,6 @@ db/datos
 .envrc
 public/es
 public/en
+
+# Attachments
+public/system

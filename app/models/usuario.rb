@@ -5,6 +5,7 @@ class Usuario < ActiveRecord::Base
   # TODO Incluir idioma
   store :config, accessors: [:srid, :checks_csv_perfiles]
 
+  has_many :operations
   # TODO cambiar relacion a 'creador'
   has_many :perfiles
   has_many :proyectos

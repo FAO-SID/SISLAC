@@ -1,0 +1,36 @@
+.row.botonera
+  .col
+
+.row.attributes
+  %dl.col
+    %dt= t('.available')
+    %hr
+    %dd
+      %dl.row
+        %dt.col-sm-4 Exportar a CSV
+        %dd.col-sm-8= link_to t('.selected', count: selection_size), exports_path
+
+.row.layers
+  %dl.col
+    %dt= t '.current'
+    %dd
+      .table-responsive
+        %table.table.table-sm.table-hover
+          %thead
+            %tr
+              %th{ scope: 'col' }
+                Tipo
+              %th{ scope: 'col' }
+                Estado
+              %th{ scope: 'col' }
+                Perfiles
+              %th{ scope: 'col' }
+                Resultado
+
+          %tbody
+            - @operations.each do |operation|
+              %tr
+                %td= operation.name
+                %td= operation.state
+                %td= operation.profile_ids.size 
+                %td= operation.download_link

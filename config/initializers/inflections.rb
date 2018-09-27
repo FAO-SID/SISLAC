@@ -65,6 +65,8 @@ ActiveSupport::Inflector.inflections do |inflect|
   # Se mantienen en inglés
   inflect.irregular 'import', 'imports'
   inflect.irregular 'export', 'exports'
+  inflect.irregular 'result', 'results'
+  inflect.irregular 'operation', 'operations'
   inflect.irregular 'type', 'types'
   inflect.irregular 'license', 'licenses'
   inflect.irregular 'selection', 'selections'

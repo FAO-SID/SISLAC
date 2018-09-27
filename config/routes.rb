@@ -38,6 +38,10 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :operations do
+      get 'download', on: :member
+    end
+
     # TODO Deprecate path_names
     with_options path_names: masculinos do |r|
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180927040402) do
+ActiveRecord::Schema.define(version: 20180927175818) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -378,6 +378,21 @@ ActiveRecord::Schema.define(version: 20180927040402) do
 
   add_index "limites", ["horizonte_id"], name: "index_limites_on_horizonte_id", unique: true, using: :btree
 
+  create_table "operations", force: :cascade do |t|
+    t.integer  "usuario_id"
+    t.integer  "profile_ids",          default: [],                 array: true
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.string   "results_file_name"
+    t.string   "results_content_type"
+    t.integer  "results_file_size"
+    t.datetime "results_updated_at"
+    t.boolean  "finished",             default: false
+    t.string   "name",                                 null: false
+  end
+
+  add_index "operations", ["usuario_id"], name: "index_operations_on_usuario_id", using: :btree
+
   create_table "paisajes", force: :cascade do |t|
     t.string   "tipo"
     t.string   "forma"
@@ -637,5 +652,6 @@ ActiveRecord::Schema.define(version: 20180927040402) do
 
   add_index "usuarios_roles", ["usuario_id", "rol_id"], name: "index_usuarios_roles_on_usuario_id_and_rol_id", using: :btree
 
+  add_foreign_key "operations", "usuarios"
   add_foreign_key "perfiles", "licenses"
 end
