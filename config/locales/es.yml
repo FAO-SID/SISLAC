@@ -323,7 +323,9 @@ es:
         titulo: Otros
       perfiles:
         cargar: Cargar
-        exportar: Exportar (%{size} Perfiles)
+        exportar:
+          one: Exportar (%{count} Perfil)
+          other:  Exportar (%{count} Perfiles)
         importar: Importar
         lista: Ver
         titulo: Perfiles
@@ -427,9 +429,9 @@ es:
       nuevo_perfil: Nuevo perfil
       numero: Número
       ubicacion: Ubicación
-      select: Seleccionar
-      select_all: Seleccionar Todos
-      select_none: Limpiar selección
+      selected: Seleccionado
+      select_all: Marcar todos
+      select_none: Desmarcar
     seleccionar:
       desmarcar_todo: Desmarcar todo
       es_modal: "¿Es modal?"

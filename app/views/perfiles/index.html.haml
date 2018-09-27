@@ -2,31 +2,32 @@
   .col
     .btn-toolbar
       - if can? :create, Perfil
-        .btn-group.btn-group-sm
+        .btn-group-sm.mr-2
           = link_to t('.nuevo_perfil'), new_perfil_path, class: 'btn btn-primary'
-      .btn-group.btn-group-sm
-        = form_tag select_all_selections_path, method: :put do
-          - @perfil_ids.each do |perfil_id|
-            = hidden_field_tag 'selections[profile_ids][]', perfil_id
-          = submit_tag t('.select_all'), class: 'btn btn-primary', data: { disable_with: 'Enviando' }
-      .btn-group.btn-group-sm
-        = form_tag select_all_selections_path, method: :put do
-          = hidden_field_tag 'selections[profile_ids][]', nil
-          = submit_tag t('.select_none'), class: 'btn btn-primary', data: { disable_with: 'Enviando' }
+      - if usuario_signed_in?
+        .btn-group-sm.mr-2
+          = form_tag select_all_selections_path, method: :put do
+            - @perfil_ids.each do |perfil_id|
+              = hidden_field_tag 'selections[profile_ids][]', perfil_id
+            = submit_tag t('.select_all'), class: 'btn btn-sm btn-primary', data: { disable_with: 'Enviando' }
+        .btn-group-sm.mr-2
+          = form_tag select_all_selections_path, method: :put do
+            = hidden_field_tag 'selections[profile_ids][]', nil
+            = submit_tag t('.select_none'), class: 'btn btn-sm btn-primary', data: { disable_with: 'Enviando' }
 
   .paginacion.col
     = paginate @perfiles
 
 .row.encabezado
   .checks.col-2
-    = t('.select')
-  .col-2.text-right= link_para_ordenar :fecha, t('.fecha'), class: 'mr-3'
-  .col= link_para_ordenar :nombre, t('.nombre')
+    = t('.selected')
+  .col-3.col-sm-2.order-1= link_para_ordenar :fecha, t('.fecha'), class: 'mr-3'
+  .col-12.col-md.order-5.order-md-2= link_para_ordenar :nombre, t('.nombre')
   -# FIXME Botón de ordenar por ubicación no ordena por el contenido de la celda
-  .col-4
+  .col-12.col-md-2.order-6.order-md-3.ocultar-vacios<
     = link_para_ordenar :country, t('.ubicacion')
-  .col-2.text-left= link_para_ordenar :numero, t('.numero')
-  .col-2
+  .col-3.col-md-2.order-4.text-left= link_para_ordenar :numero, t('.numero')
+  .col-md-1.order-md-7.order-3
 
 = render @perfiles
 
