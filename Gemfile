@@ -97,7 +97,6 @@ gem 'activeadmin-globalize',
 gem 'dalli'
 gem 'delayed_job_active_record'
 gem 'daemons'
-gem 'passenger'
 
 ## Development but we might need them in production
 gem 'minitest-rails'
