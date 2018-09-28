@@ -61,7 +61,7 @@ gem 'multiselectjs_rails',
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'select2-rails'
-gem 'bootstrap', '~> 4.0'
+gem 'bootstrap', '4.0.0'
 
 # Bower packages
 # FIXME Migrate to webpacker
@@ -97,6 +97,7 @@ gem 'activeadmin-globalize',
 gem 'dalli'
 gem 'delayed_job_active_record'
 gem 'daemons'
+gem 'passenger'
 
 ## Development but we might need them in production
 gem 'minitest-rails'
