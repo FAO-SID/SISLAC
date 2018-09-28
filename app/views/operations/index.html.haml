@@ -21,6 +21,8 @@
               %th{ scope: 'col' }
                 Tipo
               %th{ scope: 'col' }
+                Inicio
+              %th{ scope: 'col' }
                 Estado
               %th{ scope: 'col' }
                 Perfiles
@@ -31,6 +33,7 @@
             - @operations.each do |operation|
               %tr
                 %td= operation.name
+                %td= operation.start_time
                 %td= operation.state
                 %td= operation.profile_ids.size 
                 %td= operation.download_link

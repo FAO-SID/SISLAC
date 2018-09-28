@@ -6,12 +6,18 @@
 
 .row.attributes
   %dl.col
-    %dt= 'Exportación de CSV'
+    %dt= @operation.name
     %hr
     %dd
       %dl.row
         %dt.col-sm-4= 'Estado'
         %dd.col-sm-8= @operation.state
+
+        %dt.col-sm-4= 'Inicio'
+        %dd.col-sm-8= @operation.start_time
+
+        %dt.col-sm-4= 'Perfiles'
+        %dd.col-sm-8= @operation.profile_ids.size
 
         - if @operation.finished?
           %dt.col-sm-4= 'Descargar'
