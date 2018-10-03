@@ -4,10 +4,14 @@ class OperationDecorator < ApplicationDecorator
   end
 
   def download_link
-    h.link_to object.results.original_filename, h.download_operation_path(object) if object.finished?
+    h.link_to file_name, h.download_operation_path(object), download: file_name if object.finished?
   end
 
   def start_time
     h.l object.created_at, format: :short
+  end
+
+  def file_name
+    object.results.try :original_filename
   end
 end
