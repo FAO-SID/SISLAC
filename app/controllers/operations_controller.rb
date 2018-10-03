@@ -10,6 +10,6 @@ class OperationsController < AutorizadoController
   end
 
   def download
-    send_file @operation.results.path, type: 'text/csv' 
+    send_file @operation.results.path, type: :csv
   end
 end

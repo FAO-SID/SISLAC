@@ -19,15 +19,17 @@
     = paginate @perfiles
 
 .row.encabezado
-  .checks.col-2
-    = t('.selected')
+  - if usuario_signed_in?
+    .checks.col-1
+      = t('.selected')
   .col-3.col-sm-2.order-1= link_para_ordenar :fecha, t('.fecha'), class: 'mr-3'
   .col-12.col-md.order-5.order-md-2= link_para_ordenar :nombre, t('.nombre')
   -# FIXME Botón de ordenar por ubicación no ordena por el contenido de la celda
   .col-12.col-md-2.order-6.order-md-3.ocultar-vacios<
     = link_para_ordenar :country, t('.ubicacion')
   .col-3.col-md-2.order-4.text-left= link_para_ordenar :numero, t('.numero')
-  .col-md-1.order-md-7.order-3
+  - if usuario_signed_in?
+    .col-md-1.order-md-7.order-3
 
 = render @perfiles
 
