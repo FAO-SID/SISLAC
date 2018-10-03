@@ -84,6 +84,9 @@ es:
       comment:
         one: Comentario
         other: Comentarios
+      perfil:
+        one: Perfil
+        other: Perfiles
   admin:
     dashboard:
       administradores: Administradores
